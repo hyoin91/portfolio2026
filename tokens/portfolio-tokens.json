@@ -32,14 +32,6 @@
           "value": "#EDE3FF",
           "type": "color"
         },
-        "pageLight": {
-          "value": "#F8F4FF",
-          "type": "color"
-        },
-        "section": {
-          "value": "#F4EEFF",
-          "type": "color"
-        },
         "card": {
           "value": "#F8F4FF",
           "type": "color"
@@ -47,25 +39,9 @@
         "cardStrong": {
           "value": "#FFFFFF",
           "type": "color"
-        },
-        "overlay": {
-          "value": "rgba(17, 17, 17, 0.48)",
-          "type": "color"
         }
       },
       "surface": {
-        "primary": {
-          "value": "#FFFFFF",
-          "type": "color"
-        },
-        "secondary": {
-          "value": "#F0EBF8",
-          "type": "color"
-        },
-        "tertiary": {
-          "value": "#E7DCF8",
-          "type": "color"
-        },
         "featurePanel": {
           "value": "#52666B",
           "type": "color"
@@ -116,60 +92,6 @@
         },
         "feature": {
           "value": "rgba(255, 255, 255, 0.72)",
-          "type": "color"
-        }
-      },
-      "icon": {
-        "primary": {
-          "value": "{color.brand.primary}",
-          "type": "color"
-        },
-        "secondary": {
-          "value": "#B6A5DF",
-          "type": "color"
-        },
-        "inverse": {
-          "value": "#FFFFFF",
-          "type": "color"
-        },
-        "dark": {
-          "value": "#111111",
-          "type": "color"
-        }
-      },
-      "status": {
-        "success": {
-          "value": "#22C55E",
-          "type": "color"
-        },
-        "warning": {
-          "value": "#F59E0B",
-          "type": "color"
-        },
-        "error": {
-          "value": "#EF4444",
-          "type": "color"
-        },
-        "info": {
-          "value": "#5298FF",
-          "type": "color"
-        }
-      },
-      "chart": {
-        "purple": {
-          "value": "{color.brand.primary}",
-          "type": "color"
-        },
-        "purpleDark": {
-          "value": "{color.brand.primaryActive}",
-          "type": "color"
-        },
-        "blue": {
-          "value": "#7478D9",
-          "type": "color"
-        },
-        "gray": {
-          "value": "#DAD5E5",
           "type": "color"
         }
       }
@@ -578,21 +500,39 @@
         }
       },
       "badge": {
-        "background": {
-          "value": "#A9A0CF",
-          "type": "color"
+        "frontend": {
+          "background": {
+            "value": "#A9A0CF",
+            "type": "color"
+          },
+          "text": {
+            "value": "{color.text.inverse}",
+            "type": "color"
+          }
         },
-        "secondary": {
-          "value": "#8186DC",
-          "type": "color"
+        "publishing": {
+          "background": {
+            "value": "#8186DC",
+            "type": "color"
+          },
+          "text": {
+            "value": "{color.text.inverse}",
+            "type": "color"
+          }
+        },
+        "design": {
+          "background": {
+            "value": "#8D8FB5",
+            "type": "color"
+          },
+          "text": {
+            "value": "{color.text.inverse}",
+            "type": "color"
+          }
         },
         "radius": {
           "value": "{borderRadius.pill}",
           "type": "borderRadius"
-        },
-        "tertiary": {
-          "value": "#8D8FB5",
-          "type": "color"
         }
       },
       "input": {
