@@ -1,3 +1,216 @@
 {
-  "portfolio": {}
+  "portfolio": {
+    "color": {
+      "brand": {
+        "primary": {
+          "value": "#A07FE2",
+          "type": "color"
+        },
+        "primaryHover": {
+          "value": "#8B63DD",
+          "type": "color"
+        },
+        "primaryDeep": {
+          "value": "#6F55B4",
+          "type": "color"
+        },
+        "primarySoft": {
+          "value": "#DCCBFF",
+          "type": "color"
+        },
+        "secondary": {
+          "value": "#7478D9",
+          "type": "color"
+        }
+      },
+      "background": {
+        "page": {
+          "value": "#EDE3FF",
+          "type": "color"
+        },
+        "surface": {
+          "value": "#F8F4FF",
+          "type": "color"
+        },
+        "surfaceStrong": {
+          "value": "#FFFFFF",
+          "type": "color"
+        },
+        "surfaceMuted": {
+          "value": "#F0EBF8",
+          "type": "color"
+        },
+        "featurePanel": {
+          "value": "#52666B",
+          "type": "color"
+        },
+        "featureCard": {
+          "value": "#DCE4E7",
+          "type": "color"
+        }
+      },
+      "text": {
+        "primary": {
+          "value": "#111111",
+          "type": "color"
+        },
+        "secondary": {
+          "value": "#55505F",
+          "type": "color"
+        },
+        "tertiary": {
+          "value": "#817A8F",
+          "type": "color"
+        },
+        "inverse": {
+          "value": "#FFFFFF",
+          "type": "color"
+        }
+      },
+      "border": {
+        "default": {
+          "value": "#ECE7F5",
+          "type": "color"
+        },
+        "strong": {
+          "value": "#FFFFFF",
+          "type": "color"
+        }
+      }
+    },
+    "fontFamilies": {
+      "base": {
+        "value": "Pretendard",
+        "type": "fontFamilies"
+      }
+    },
+    "fontWeights": {
+      "regular": {
+        "value": "400",
+        "type": "fontWeights"
+      },
+      "medium": {
+        "value": "500",
+        "type": "fontWeights"
+      },
+      "semibold": {
+        "value": "600",
+        "type": "fontWeights"
+      },
+      "bold": {
+        "value": "700",
+        "type": "fontWeights"
+      }
+    },
+    "fontSizes": {
+      "xs": {
+        "value": "10px",
+        "type": "fontSizes"
+      },
+      "sm": {
+        "value": "12px",
+        "type": "fontSizes"
+      },
+      "md": {
+        "value": "14px",
+        "type": "fontSizes"
+      },
+      "lg": {
+        "value": "16px",
+        "type": "fontSizes"
+      },
+      "xl": {
+        "value": "20px",
+        "type": "fontSizes"
+      },
+      "2xl": {
+        "value": "24px",
+        "type": "fontSizes"
+      },
+      "3xl": {
+        "value": "32px",
+        "type": "fontSizes"
+      },
+      "hero": {
+        "value": "40px",
+        "type": "fontSizes"
+      }
+    },
+    "spacing": {
+      "1": {
+        "value": "4px",
+        "type": "spacing"
+      },
+      "2": {
+        "value": "8px",
+        "type": "spacing"
+      },
+      "3": {
+        "value": "12px",
+        "type": "spacing"
+      },
+      "4": {
+        "value": "16px",
+        "type": "spacing"
+      },
+      "5": {
+        "value": "20px",
+        "type": "spacing"
+      },
+      "6": {
+        "value": "24px",
+        "type": "spacing"
+      },
+      "8": {
+        "value": "32px",
+        "type": "spacing"
+      },
+      "10": {
+        "value": "40px",
+        "type": "spacing"
+      },
+      "12": {
+        "value": "48px",
+        "type": "spacing"
+      }
+    },
+    "borderRadius": {
+      "sm": {
+        "value": "12px",
+        "type": "borderRadius"
+      },
+      "md": {
+        "value": "16px",
+        "type": "borderRadius"
+      },
+      "lg": {
+        "value": "24px",
+        "type": "borderRadius"
+      },
+      "xl": {
+        "value": "32px",
+        "type": "borderRadius"
+      },
+      "pill": {
+        "value": "999px",
+        "type": "borderRadius"
+      }
+    },
+    "boxShadow": {
+      "soft": {
+        "value": "0 8px 24px rgba(111, 85, 180, 0.12)",
+        "type": "boxShadow"
+      },
+      "card": {
+        "value": "0 12px 32px rgba(160, 127, 226, 0.16)",
+        "type": "boxShadow"
+      }
+    }
+  },
+  "$themes": [],
+  "$metadata": {
+    "tokenSetOrder": [
+      "portfolio"
+    ]
+  }
 }
