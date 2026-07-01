@@ -19,7 +19,7 @@
           "type": "color"
         },
         "soft": {
-          "value": "#DCCBFF",
+          "value": "#D2BBFF",
           "type": "color"
         },
         "subtle": {
@@ -579,16 +579,20 @@
       },
       "badge": {
         "background": {
-          "value": "{color.brand.primary}",
+          "value": "#A9A0CF",
           "type": "color"
         },
-        "text": {
-          "value": "{color.text.inverse}",
+        "secondary": {
+          "value": "#8186DC",
           "type": "color"
         },
         "radius": {
           "value": "{borderRadius.pill}",
           "type": "borderRadius"
+        },
+        "tertiary": {
+          "value": "#8D8FB5",
+          "type": "color"
         }
       },
       "input": {
