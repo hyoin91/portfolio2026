@@ -1,5 +1,6 @@
-const buildCssTokens = require("./build-css");
-const buildTheme = require("./build-theme");
+
+import buildCssTokens from "./build-css.js";
+import buildTheme from "./build-theme.js";
 
 function buildTokens() {
   console.log("Building design tokens...\n");

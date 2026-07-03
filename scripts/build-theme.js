@@ -1,5 +1,6 @@
-const fs = require("fs");
-const path = require("path");
+
+import fs from "fs";
+import path from "path";
 
 const rootDir = process.cwd();
 
@@ -120,11 +121,11 @@ export default lightTheme;
   fs.mkdirSync(path.dirname(outputPath), { recursive: true });
   fs.writeFileSync(outputPath, themeFile, "utf8");
 
+
+  fs.mkdirSync(path.dirname(outputPath), { recursive: true });
+  fs.writeFileSync(outputPath, themeFile, "utf8");
+
   console.log(`Generated theme object: ${outputPath}`);
 }
 
-if (require.main === module) {
-  buildTheme();
-}
-
-module.exports = buildTheme;
+export default buildTheme;

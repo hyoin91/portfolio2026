@@ -4,32 +4,43 @@
 export const lightTheme = {
   "color": {
     "purple": {
+      "25": "var(--color-purple-25)",
       "50": "var(--color-purple-50)",
       "100": "var(--color-purple-100)",
+      "200": "var(--color-purple-200)",
+      "300": "var(--color-purple-300)",
       "500": "var(--color-purple-500)",
       "600": "var(--color-purple-600)",
       "700": "var(--color-purple-700)",
+      "750": "var(--color-purple-750)",
       "800": "var(--color-purple-800)",
-      "900": "var(--color-purple-900)"
+      "900": "var(--color-purple-900)",
+      "950": "var(--color-purple-950)"
     },
     "blue": {
-      "500": "var(--color-blue-500)",
-      "600": "var(--color-blue-600)",
-      "700": "var(--color-blue-700)"
+      "400": "var(--color-blue-400)",
+      "500": "var(--color-blue-500)"
     },
     "teal": {
       "50": "var(--color-teal-50)",
       "100": "var(--color-teal-100)",
+      "300": "var(--color-teal-300)",
       "500": "var(--color-teal-500)",
       "700": "var(--color-teal-700)",
       "800": "var(--color-teal-800)",
       "900": "var(--color-teal-900)"
     },
+    "slate": {
+      "100": "var(--color-slate-100)",
+      "600": "var(--color-slate-600)",
+      "700": "var(--color-slate-700)",
+      "800": "var(--color-slate-800)",
+      "900": "var(--color-slate-900)"
+    },
     "neutral": {
       "0": "var(--color-neutral-0)",
       "50": "var(--color-neutral-50)",
       "100": "var(--color-neutral-100)",
-      "200": "var(--color-neutral-200)",
       "300": "var(--color-neutral-300)",
       "400": "var(--color-neutral-400)",
       "500": "var(--color-neutral-500)",
@@ -38,9 +49,8 @@ export const lightTheme = {
       "900": "var(--color-neutral-900)"
     },
     "glass": {
-      "white64": "var(--color-glass-white64)",
-      "white72": "var(--color-glass-white72)",
-      "black48": "var(--color-glass-black48)"
+      "white16": "var(--color-glass-white16)",
+      "white72": "var(--color-glass-white72)"
     },
     "brand": {
       "primary": "var(--color-brand-primary)",
@@ -303,32 +313,43 @@ export const lightTheme = {
 export const darkTheme = {
   "color": {
     "purple": {
+      "25": "var(--color-purple-25)",
       "50": "var(--color-purple-50)",
       "100": "var(--color-purple-100)",
+      "200": "var(--color-purple-200)",
+      "300": "var(--color-purple-300)",
       "500": "var(--color-purple-500)",
       "600": "var(--color-purple-600)",
       "700": "var(--color-purple-700)",
+      "750": "var(--color-purple-750)",
       "800": "var(--color-purple-800)",
-      "900": "var(--color-purple-900)"
+      "900": "var(--color-purple-900)",
+      "950": "var(--color-purple-950)"
     },
     "blue": {
-      "500": "var(--color-blue-500)",
-      "600": "var(--color-blue-600)",
-      "700": "var(--color-blue-700)"
+      "400": "var(--color-blue-400)",
+      "500": "var(--color-blue-500)"
     },
     "teal": {
       "50": "var(--color-teal-50)",
       "100": "var(--color-teal-100)",
+      "300": "var(--color-teal-300)",
       "500": "var(--color-teal-500)",
       "700": "var(--color-teal-700)",
       "800": "var(--color-teal-800)",
       "900": "var(--color-teal-900)"
     },
+    "slate": {
+      "100": "var(--color-slate-100)",
+      "600": "var(--color-slate-600)",
+      "700": "var(--color-slate-700)",
+      "800": "var(--color-slate-800)",
+      "900": "var(--color-slate-900)"
+    },
     "neutral": {
       "0": "var(--color-neutral-0)",
       "50": "var(--color-neutral-50)",
       "100": "var(--color-neutral-100)",
-      "200": "var(--color-neutral-200)",
       "300": "var(--color-neutral-300)",
       "400": "var(--color-neutral-400)",
       "500": "var(--color-neutral-500)",
@@ -337,9 +358,8 @@ export const darkTheme = {
       "900": "var(--color-neutral-900)"
     },
     "glass": {
-      "white64": "var(--color-glass-white64)",
-      "white72": "var(--color-glass-white72)",
-      "black48": "var(--color-glass-black48)"
+      "white16": "var(--color-glass-white16)",
+      "white72": "var(--color-glass-white72)"
     },
     "brand": {
       "primary": "var(--color-brand-primary)",
