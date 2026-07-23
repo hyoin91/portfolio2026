@@ -12,7 +12,7 @@ const typography = {
   },
   title: {
     fontSize: "var(--font-sizes-24)",
-    fontWeight: "var(--font-weights-semibold)",
+    fontWeight: "var(--font-weights-medium)",
     lineHeight: "var(--line-heights-base)",
     responsive: {
       fontSize: "var(--font-sizes-20)",
@@ -21,12 +21,12 @@ const typography = {
   },
   heading: {
     fontSize: "var(--font-sizes-32)",
-    fontWeight: "var(--font-weights-bold)",
+    fontWeight: "var(--font-weights-medium)",
     lineHeight: "var(--line-heights-tight)",
     letterSpacing: "var(--letter-spacing-tight)",
     responsive: {
       fontSize: "var(--font-sizes-24)",
-      fontWeight: "var(--font-weights-semibold)",
+      fontWeight: "var(--font-weights-medium)",
     },
   },
   display: {

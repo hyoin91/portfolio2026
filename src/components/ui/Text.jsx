@@ -4,7 +4,7 @@ import typography from "../../styles/typography";
 const StyledText = styled.span`
   font-size: ${({ $size }) => typography[$size].fontSize};
   font-weight: ${({ $size, $bold }) =>
-    $bold ? "var(--font-weights-bold)" : typography[$size].fontWeight};
+    $bold ? "var(--font-weights-semibold)" : typography[$size].fontWeight};
   line-height: ${({ $size }) => typography[$size].lineHeight};
   ${({ $size }) =>
     typography[$size].letterSpacing &&
@@ -17,7 +17,7 @@ const StyledText = styled.span`
       if (!r) return "";
       return `
         font-size: ${r.fontSize};
-        font-weight: ${$bold ? "var(--font-weights-bold)" : r.fontWeight};
+        font-weight: ${$bold ? "var(--font-weights-semibold)" : r.fontWeight};
       `;
     }}
   }

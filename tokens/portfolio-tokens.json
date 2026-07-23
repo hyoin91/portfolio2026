@@ -274,7 +274,9 @@
         "lg": {
           "value": "32px",
           "type": "sizing"
-        }
+        },
+          "xl": { "value": "40px", "type": "sizing" }
+      }
       },
       "avatar": {
         "sm": {
@@ -290,10 +292,10 @@
           "type": "sizing"
         }
       },
-            "logo": {
-        "sm": {
-          "value": "32px",
-          "type": "sizing"
+    "logo": {
+      "sm": {
+        "value": "32px",
+        "type": "sizing"
         },
         "md": {
           "value": "48px",
@@ -303,16 +305,15 @@
           "value": "64px",
           "type": "sizing"
         }
-      },
-      
-      "navHeight": {
-        "value": "42px",
-        "type": "sizing"
-      },
-      "cardMin": {
-        "value": "220px",
-        "type": "sizing"
-      }
+    },
+    
+    "navHeight": {
+      "value": "42px",
+      "type": "sizing"
+    },
+    "cardMin": {
+      "value": "220px",
+      "type": "sizing"
     },
     "breakpoint": {
       "mobile": {
