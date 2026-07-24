@@ -46,7 +46,10 @@ export const lightTheme = {
       "500": "var(--color-neutral-500)",
       "700": "var(--color-neutral-700)",
       "800": "var(--color-neutral-800)",
-      "900": "var(--color-neutral-900)"
+      "900": "var(--color-neutral-900)",
+      "0-80": "var(--color-neutral-0-80)",
+      "0-60": "var(--color-neutral-0-60)",
+      "0-40": "var(--color-neutral-0-40)"
     },
     "glass": {
       "white16": "var(--color-glass-white16)",
@@ -69,7 +72,7 @@ export const lightTheme = {
     "background": {
       "page": "var(--color-background-page)",
       "card": "var(--color-background-card)",
-      "cardStrong": "var(--color-background-card-strong)"
+      "morebtn": "var(--color-background-morebtn)"
     },
     "surface": {
       "primary": "var(--color-surface-primary)",
@@ -110,6 +113,7 @@ export const lightTheme = {
     "12": "var(--font-sizes-12)",
     "14": "var(--font-sizes-14)",
     "16": "var(--font-sizes-16)",
+    "18": "var(--font-sizes-18)",
     "20": "var(--font-sizes-20)",
     "24": "var(--font-sizes-24)",
     "32": "var(--font-sizes-32)",
@@ -164,12 +168,19 @@ export const lightTheme = {
       "xs": "var(--sizing-icon-xs)",
       "sm": "var(--sizing-icon-sm)",
       "md": "var(--sizing-icon-md)",
-      "lg": "var(--sizing-icon-lg)"
+      "lg": "var(--sizing-icon-lg)",
+      "xl": "var(--sizing-icon-xl)",
+      "2xl": "var(--sizing-icon-2xl)"
     },
     "avatar": {
       "sm": "var(--sizing-avatar-sm)",
       "md": "var(--sizing-avatar-md)",
       "lg": "var(--sizing-avatar-lg)"
+    },
+    "logo": {
+      "sm": "var(--sizing-logo-sm)",
+      "md": "var(--sizing-logo-md)",
+      "lg": "var(--sizing-logo-lg)"
     },
     "navHeight": "var(--sizing-nav-height)",
     "cardMin": "var(--sizing-card-min)"
@@ -203,6 +214,14 @@ export const lightTheme = {
         "height": "var(--component-button-secondary-height)",
         "paddingX": "var(--component-button-secondary-padding-x)"
       },
+      "more": {
+        "background": "var(--component-button-more-background)",
+        "text": "var(--component-button-more-text)",
+        "border": "var(--component-button-more-border)",
+        "radius": "var(--component-button-more-radius)",
+        "height": "var(--component-button-more-height)",
+        "padding": "var(--component-button-more-padding)"
+      },
       "ghost": {
         "background": "var(--component-button-ghost-background)",
         "text": "var(--component-button-ghost-text)",
@@ -210,6 +229,16 @@ export const lightTheme = {
         "radius": "var(--component-button-ghost-radius)",
         "height": "var(--component-button-ghost-height)",
         "paddingX": "var(--component-button-ghost-padding-x)"
+      }
+    },
+    "link": {
+      "listlink": {
+        "background": "var(--component-link-listlink-background)",
+        "backgroundHover": "var(--component-link-listlink-background-hover)",
+        "backgroundActive": "var(--component-link-listlink-background-active)",
+        "text": "var(--component-link-listlink-text)",
+        "radius": "var(--component-link-listlink-radius)",
+        "paddingY": "var(--component-link-listlink-padding-y)"
       }
     },
     "chip": {
@@ -355,7 +384,10 @@ export const darkTheme = {
       "500": "var(--color-neutral-500)",
       "700": "var(--color-neutral-700)",
       "800": "var(--color-neutral-800)",
-      "900": "var(--color-neutral-900)"
+      "900": "var(--color-neutral-900)",
+      "0-80": "var(--color-neutral-0-80)",
+      "0-60": "var(--color-neutral-0-60)",
+      "0-40": "var(--color-neutral-0-40)"
     },
     "glass": {
       "white16": "var(--color-glass-white16)",
@@ -419,6 +451,7 @@ export const darkTheme = {
     "12": "var(--font-sizes-12)",
     "14": "var(--font-sizes-14)",
     "16": "var(--font-sizes-16)",
+    "18": "var(--font-sizes-18)",
     "20": "var(--font-sizes-20)",
     "24": "var(--font-sizes-24)",
     "32": "var(--font-sizes-32)",
@@ -473,12 +506,19 @@ export const darkTheme = {
       "xs": "var(--sizing-icon-xs)",
       "sm": "var(--sizing-icon-sm)",
       "md": "var(--sizing-icon-md)",
-      "lg": "var(--sizing-icon-lg)"
+      "lg": "var(--sizing-icon-lg)",
+      "xl": "var(--sizing-icon-xl)",
+      "2xl": "var(--sizing-icon-2xl)"
     },
     "avatar": {
       "sm": "var(--sizing-avatar-sm)",
       "md": "var(--sizing-avatar-md)",
       "lg": "var(--sizing-avatar-lg)"
+    },
+    "logo": {
+      "sm": "var(--sizing-logo-sm)",
+      "md": "var(--sizing-logo-md)",
+      "lg": "var(--sizing-logo-lg)"
     },
     "navHeight": "var(--sizing-nav-height)",
     "cardMin": "var(--sizing-card-min)"
@@ -512,6 +552,14 @@ export const darkTheme = {
         "height": "var(--component-button-secondary-height)",
         "paddingX": "var(--component-button-secondary-padding-x)"
       },
+      "more": {
+        "background": "var(--component-button-more-background)",
+        "text": "var(--component-button-more-text)",
+        "border": "var(--component-button-more-border)",
+        "radius": "var(--component-button-more-radius)",
+        "height": "var(--component-button-more-height)",
+        "padding": "var(--component-button-more-padding)"
+      },
       "ghost": {
         "background": "var(--component-button-ghost-background)",
         "text": "var(--component-button-ghost-text)",
@@ -519,6 +567,16 @@ export const darkTheme = {
         "radius": "var(--component-button-ghost-radius)",
         "height": "var(--component-button-ghost-height)",
         "paddingX": "var(--component-button-ghost-padding-x)"
+      }
+    },
+    "link": {
+      "listlink": {
+        "background": "var(--component-link-listlink-background)",
+        "backgroundHover": "var(--component-link-listlink-background-hover)",
+        "backgroundActive": "var(--component-link-listlink-background-active)",
+        "text": "var(--component-link-listlink-text)",
+        "radius": "var(--component-link-listlink-radius)",
+        "paddingY": "var(--component-link-listlink-padding-y)"
       }
     },
     "chip": {

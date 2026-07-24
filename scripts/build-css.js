@@ -32,10 +32,12 @@ function pathToVariableName(tokenPath) {
 function resolveValue(value) {
   if (typeof value !== "string") return value;
 
-  const exactRef = value.match(/^\{(.+)\}$/);
-  if (!exactRef) return value;
+  if (!value.includes("{")) return value;
 
-  return `var(${pathToVariableName(exactRef[1])})`;
+  return value.replace(
+    /\{([^}]+)\}/g,
+    (match, tokenPath) => `var(${pathToVariableName(tokenPath)})`
+  );
 }
 
 function flattenSet(obj, prefix = []) {
@@ -101,7 +103,7 @@ function buildCssTokens() {
   const coreVariables = flattenSet(core);
   const lightVariables = flattenSet(light);
   const darkVariablesAll = flattenSet(dark);
-  const componentVariables = flattenSet(component);
+  const componentVariables = flattenSet(component, ["component"]);
 
   const darkVariables = {};
   for (const [name, value] of Object.entries(darkVariablesAll)) {

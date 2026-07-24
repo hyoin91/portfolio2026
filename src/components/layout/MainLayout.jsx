@@ -21,8 +21,13 @@ export default MainLayout;
  //-------------Styled----------------//
 
 const Wrapper = styled.div`
-    width:95%;
-    margin:0 auto;
+  width: 100%;
+  max-width: 1440px;
+    min-height: 100vh;
+    margin:var(--spacing-4) 0;
+   padding: 0 var(--spacing-6);
+   display: flex;
+   flex-direction: column;
 `;
 
 const Content = styled.main`

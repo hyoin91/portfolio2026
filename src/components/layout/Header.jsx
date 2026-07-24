@@ -27,7 +27,6 @@ const Logo = styled.img`
 `;
 
 const Wrapper =  styled.section`
-margin-top:var(--spacing-8);
     width:100%;
     display: flex ;
     justify-content: space-between;

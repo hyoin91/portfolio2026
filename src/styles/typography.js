@@ -5,8 +5,13 @@ const typography = {
     fontWeight: "var(--font-weights-regular)",
     lineHeight: "var(--line-heights-relaxed)",
   },
-  body: {
+  text: {
     fontSize: "var(--font-sizes-16)",
+    fontWeight: "var(--font-weights-regular)",
+    lineHeight: "var(--line-heights-base)",
+  },
+  body: {
+    fontSize: "var(--font-sizes-18)",
     fontWeight: "var(--font-weights-regular)",
     lineHeight: "var(--line-heights-base)",
   },

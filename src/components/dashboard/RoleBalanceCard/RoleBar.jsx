@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Text from "../../ui/Text";
-import { Row, Column } from "../../layout/Layout";
+import {Row, Column} from "../../layout/Layout"
 
 function RoleBar({roles}){
 
@@ -9,6 +9,7 @@ function RoleBar({roles}){
             <Row>
                 {roles.map((role)=>(
                    <Bar
+                        $gap={1}
                         key={role.label}
                         $percent={role.percent} 
                     >
@@ -23,7 +24,7 @@ function RoleBar({roles}){
                                     size="caption" 
                                     color="text-inverse"
                                 >
-                                    {role.percent}%
+                                    {role.percent}        
                                 </Text>
                         </Segment> 
                    </Bar>
@@ -39,7 +40,6 @@ export default RoleBar;
 //---------------------styled----------------//
 
 const Bar = styled(Column)`
-  gap: var(--spacing-1);
  flex: 0 0 ${(props) => props.$percent}%;
 `;
 

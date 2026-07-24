@@ -64,7 +64,7 @@
   인수인계 메모의 "왼쪽 세로 Sidebar" 구상은 이 시안 확인 후 "상단 가로 Header"로
   변경됨.**
 
-## 현재 상태 (2026-07-02 기준)
+## 현재 상태 (2026-07-24 기준)
 
 ### 완료됨
 
@@ -120,20 +120,91 @@
   CommonJS → ESM으로 전환.
 - 모든 페이지 컴포넌트(`Dashboard`, `Projects`, `ProjectDetail`, `DesignSystem`,
   `About`, `Contact`)는 최소 placeholder 상태로 존재하고 라우팅까지는 연결됨.
+- **`Header` 완성됨** (Logo + Nav + ThemeToggle + Avatar, 2026-07-03).
+- **레이아웃 프리미티브** (`components/layout/Layout.jsx`): `Row`/`Column`/
+  `RowBetween`/`RowCenter`/`ColumnCenter`/`Wrap`. `$gap` prop에 숫자를 주면
+  `var(--spacing-N)`으로 연결됨. **폭·높이는 절대 여기 넣지 않고**, 쓰는
+  쪽에서 `styled(Column)`으로 감싸 확장하거나 부모 grid가 정하는 컨벤션.
+- **높이 사슬**: `MainLayout Wrapper`(`min-height:100vh` + `display:flex;
+  flex-direction:column`) → `Content`(`flex:1`) → `Dashboard Page`
+  (`min-height:100%`) → `DashboardGrid`(`flex:1`). 헤더 높이를 `calc`로 빼지
+  않고 `flex:1`로 남은 높이를 받는 방식. `height` 대신 `min-height`를 쓰므로
+  내용이 길어지면 스크롤은 정상 발생.
+- **Dashboard 3열 그리드**: `DashboardGrid`가
+  `grid-template-columns: 1fr 1.5fr 1.4fr`, 1024px/768px에서 2열/1열로 축소.
+  각 열은 `Column`으로 카드를 세로로 쌓음(시안의 3열 구조).
+- **대시보드 카드 (2026-07-23~24 구현)**:
+  - `common/Section.jsx` — 카드 껍데기 공통 컴포넌트. `title`/`children` 외에
+    `more`(우상단 화살표 버튼 표시), `action`(버튼 대신 커스텀 요소),
+    `topOffset`(제목 위 여백, spacing 단계 숫자, 기본 8),
+    `gap`(카드 내부 세로 간격, 기본 4) prop 지원. **prop을 더 뚫기 전에
+    "값 3개가 항상 세트로 바뀌면 prop이 아니라 `variant`" 기준 적용할 것**
+    (예: 시안의 어두운 Key Features 패널 → `variant="feature"`).
+  - `ui/Badge.jsx` — `variant`로 `frontend`/`publishing`/`design`/`default`
+    토큰 연결.
+  - `dashboard/ListRow.jsx` — Recently Project와 Latest Updates가 공유하는
+    한 줄. `styled(Link)`라 클릭 시 `/projects/:id`로 이동.
+    `Name`은 `flex: 0 0 116px` 고정폭이라 모든 행의 설명 시작 x좌표가 정렬됨.
+  - `dashboard/RecentlyProject.jsx`, `dashboard/LatestUpdates.jsx`,
+    `dashboard/ProfileCard.jsx`, `dashboard/SkillsCard.jsx`,
+    `dashboard/Welcome.jsx`, `RoleBalanceCard/`, `StatsCard/`.
+- **`src/data/projects.js`가 프로젝트 데이터의 유일한 원본**. 대시보드 카드는
+  목데이터를 자체 보유하지 않고 아래 헬퍼로 가공해서 씀:
+  `getProject(id)` / `getRecentProjects(n)` / `getLatestUpdates(n)`
+  (`getLatestUpdates`는 각 프로젝트의 `updates`를 `flatMap`으로 펼쳐 최신순 정렬).
+  `ProjectDetail`도 같은 파일에서 읽음.
+- **`src/styles/reset.css`**에 `h1~h6, p { margin: 0 }` +
+  `h1~h6 { font-size: inherit; font-weight: inherit }` 추가함. 제목 태그는
+  의미(구조)만 담당하고 크기는 `Text`의 `size` prop이 100% 담당하는 구조.
+  **여백은 부품이 아니라 부모 `Column`/`Row`의 `$gap`이 책임진다** (컴포넌트에
+  margin 넣지 않기).
 
 ### 진행 중 / 미완료
 
-- **`Header` 완성됨** (Logo + Nav + ThemeToggle + Avatar, 2026-07-03). 다음
-  단계는 페이지 콘텐츠 구현.
 - 아이콘 사이즈(`sizing.icon.*`) 전체가 화면 크기에 따라 한꺼번에 줄어드는
   방식은 사용자가 원치 않는다고 확인함 (모든 아이콘이 같이 줄어드는 게 안
   맞다고 판단). 대신 `Text`의 `title`/`heading`/`display`처럼, 반응형이
   필요한 컴포넌트마다 개별적으로 `responsive` 오버라이드를 넣는 방식으로 감.
-- `src/data/projects.js`, `src/data/skills.js` — 빈 파일.
-  `src/components/common/`, `src/utils/` — 아직 사용 안 함.
-  `docs/DESIGN_SYSTEM.md` — 빈 파일.
-- Dashboard/Projects/ProjectDetail/About/Contact/DesignSystem 페이지 전부
-  실제 UI(시안 기준) 미구현, placeholder 텍스트만 있음.
+- `src/data/skills.js` — 빈 파일 (`SkillsCard`가 아직 컴포넌트 안에
+  `skillGroup` 배열을 직접 갖고 있음. 나중에 이 파일로 분리 예정).
+  `src/utils/` — 아직 사용 안 함. `docs/DESIGN_SYSTEM.md` — 빈 파일.
+- Projects/ProjectDetail/About/Contact/DesignSystem 페이지는 아직 시안 수준의
+  실제 UI 미구현 (`ProjectDetail`은 데이터 연결된 초안까지만 되어 있음).
+- `ListRow`의 프로젝트 로고 자리는 아직 실제 이미지가 없어 `Dot`(연보라 사각형)
+  플레이스홀더. 로고 svg 확보되면 `Icon`으로 교체할 것.
+
+## 시안 기준 남은 대시보드 카드
+
+시안 이미지: 저장소 루트의 `시안.png`. 3열 구조 기준으로 **아직 안 만든 것**:
+
+- **오른쪽 열 1 — Project State**: 우상단에 `Total 18`, 아래에 Frontend/Design/
+  Publishing 3개 막대(각각 1 / 9 / 9). `RoleBalance`와 비슷한 막대 UI인데
+  숫자 라벨이 막대 안에 들어가는 형태.
+- **오른쪽 열 2 — Features Project**: 굿소비 대표 프로젝트 카드. 앱 스크린샷
+  썸네일 + 제목/한 줄 소개 + 역할 칩 3개(Front-end / UI Design / Publishing) +
+  설명 문단. 우상단 화살표(→ `/projects/goodsobi`).
+- **Key Features 패널**: Features Project 아래에 붙는 **어두운 청록 배경** 패널.
+  2×2 그리드로 기능 4개(최저가 알림 설정 / 드래그 앤 드롭 폴더 / 찜 상품 관리 /
+  최근 검색어 저장), 각 항목은 제목+한 줄 설명. 토큰은 이미 준비돼 있음
+  (`--color-surface-feature-panel`, `--color-surface-feature-card`,
+  `--component-feature-card-*`). `Section`에 `variant="feature"`를 추가해서
+  처리할지 별도 컴포넌트로 뺄지는 만들 때 판단.
+
+## 다음 작업 순서
+
+1. **`Section`의 `more` 버튼에 링크 연결** (2026-07-24 사용자 지정, 최우선).
+   현재 `<MoreBtn type="button">`이라 클릭해도 아무 동작 없음.
+   `RecentlyProject`는 `/projects`로 이동. `Section`에 `moreTo` 같은 prop을
+   추가해 목적지를 받고, `styled(Link)`로 바꾸는 방향.
+2. 시안 기준 남은 카드 구현 (위 절 참고): Project State → Features Project →
+   Key Features 패널 순.
+3. `Projects` 페이지 실제 구현 (`/projects`, `more` 버튼의 목적지이므로 1번
+   직후에 필요해짐).
+4. `ProjectDetail` 페이지를 시안 수준으로 마감.
+5. `DesignSystem` 페이지 구현 (Core/Semantic/Component 토큰, 컬러 팔레트,
+   타이포그래피, Button/Badge/Chip/Card 샘플, Light/Dark 구조 소개).
+   `routes/Router.jsx`에서 주석 해제 필요.
+6. `About`, `Contact` 페이지 실제 콘텐츠 구현.
 
 ## 디자인 토큰 아키텍처
 
@@ -181,6 +252,30 @@ core를 직접 참조하지 않음)
   그 위에 얹는 예외 오버라이드. `data-theme` 속성이 아직 없어도(다크모드 토글
   기능 만들기 전에도) 사이트가 라이트로 정상 표시되는 이유가 이것.
 
+### 토큰 이름 규칙 & 자주 나는 실수 (2026-07-23~24 정리)
+
+- **camelCase → kebab-case 자동 변환**: json의 `paddingX`는 CSS에서
+  `--...-padding-x`가 된다. `backgroundHover` → `--...-background-hover`,
+  `navHeight` → `--sizing-nav-height`. **json 키를 그대로 `var()`에 쓰면
+  안 됨** — 헷갈리면 `src/styles/tokens.css`에서 실제 생성된 이름을 확인할 것.
+- **`--component-` 접두사는 스크립트가 붙인다**: json의 `component` 세트 아래는
+  `button`/`link`/`chip`처럼 평평하게 쓰고, `build-css.js`의
+  `flattenSet(component, ["component"])`와 `build-theme.js`의
+  `deepMerge(core, light, { component })`가 접두사를 붙인다. json 쪽에
+  `component` 키를 한 겹 더 쌓지 말 것 (실수로 날아가면 카드·배지 스타일이
+  전부 깨진다).
+- **한 값에 참조 여러 개 가능**: `"{spacing.2} {spacing.3}"`처럼 쓰면
+  `var(--spacing-2) var(--spacing-3)`으로 나온다 (`build-css.js`의
+  `resolveValue`가 `/g` 전역 치환). padding 단축 속성용.
+- **없는 CSS 변수는 에러가 아니라 "그 선언 통째로 무시"다.** 값을 바꿨는데
+  화면이 아무 반응이 없으면(다른 값으로 바뀌는 게 아니라 기본값 그대로면)
+  변수 이름 오타이거나 `tokens.css` 재생성을 안 한 것. 이 프로젝트에서
+  가장 자주 난 버그 유형.
+- 미해결 참조 일괄 점검용 스니펫 (Bash):
+  ```
+  node -e "const fs=require('fs'),path=require('path');const css=fs.readFileSync('src/styles/tokens.css','utf8');const defined=new Set([...css.matchAll(/^\s*(--[\w-]+):/gm)].map(m=>m[1]));const files=[];(function walk(d){for(const f of fs.readdirSync(d,{withFileTypes:true})){const p=path.join(d,f.name);if(f.isDirectory())walk(p);else if(/\.(jsx|js|css)$/.test(f.name)&&!p.includes('tokens.css')&&!p.includes('theme.js'))files.push(p);}})('src');const missing={};for(const f of files){for(const m of fs.readFileSync(f,'utf8').matchAll(/var\((--[\w-]+)\)/g)){if(!defined.has(m[1]))(missing[m[1]]??=[]).push(f);}}console.log(Object.keys(missing).length?missing:'OK');"
+  ```
+
 ### 스타일 작성 컨벤션 — `var(--x)` 직접 사용, `theme.xxx` 지양
 
 - `theme.js`의 값은 실제 색상이 아니라 전부 `var(--x)` 문자열만 감싼 것이라
@@ -198,8 +293,13 @@ core를 직접 참조하지 않음)
 - 수정이 필요하면 `tokens/portfolio-tokens.json`을 고친 뒤 재생성:
 
 ```
-node scripts/build-tokens.js
+npm run tokens
 ```
+
+- `package.json`의 `dev`/`build`가 `npm run tokens && vite ...` 형태라 **서버를
+  새로 띄울 때는 토큰이 자동으로 재생성된다.** 단 dev 서버를 켜둔 채로 json을
+  고치면 반영이 안 되므로, 그때는 터미널을 하나 더 열어 `npm run tokens`만
+  돌리면 된다 (`tokens.css`가 바뀌면 Vite가 알아서 감지).
 
 ## 이미지/아이콘 자산 규칙
 
@@ -218,16 +318,6 @@ node scripts/build-tokens.js
   작성되었지만, 실제로는 사용자가 별도 cmd 창을 쓰기도 하고 PowerShell도 쓴다.
   명령어 안내 시 사용자가 어떤 셸을 쓰는지(프롬프트 모양으로 구분: `C:\...>`는
   cmd, `PS C:\...>`는 PowerShell) 확인하고 그에 맞게 안내할 것.
-
-## 다음 작업 순서
-
-1. `Dashboard` 페이지를 시안 기준으로 실제 구현 (Welcome, Skill Balance,
-   프로필 카드, Recently Project, Project State, Features Project, Key
-   Features 등 섹션별로 나눠서 진행 권장).
-2. Goodsobi 대표 프로젝트 카드 + Key Features를 토큰 기반 스타일로 구현.
-3. `DesignSystem` 페이지 구현 (Core/Semantic/Component 토큰, 컬러 팔레트,
-   타이포그래피, Button/Badge/Chip/Card 샘플, Light/Dark 구조 소개).
-4. `Projects`, `ProjectDetail`, `About`, `Contact` 페이지 실제 콘텐츠 구현.
 
 ## 대표 프로젝트: Goodsobi (참고용 콘텐츠)
 

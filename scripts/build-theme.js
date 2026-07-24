@@ -97,8 +97,8 @@ function loadTokenSets() {
 function buildTheme() {
   const { core, light, dark, component } = loadTokenSets();
 
-  const lightTokens = deepMerge(core, light, component);
-  const darkTokens = deepMerge(core, dark, component);
+  const lightTokens = deepMerge(core, light, { component });
+  const darkTokens = deepMerge(core, dark, { component });
 
   const lightTheme = createThemeObject(lightTokens);
   const darkTheme = createThemeObject(darkTokens);

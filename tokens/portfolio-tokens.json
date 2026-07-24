@@ -36,7 +36,10 @@
         "900": { "value": "#162B33", "type": "color" }
       },
       "neutral": {
-        "0": { "value": "#FFFFFF", "type": "color" },
+        "0": { "value": "#FFFFFF", "type": "color" },       
+        "0-80": { "value": "#FFFFFFCC", "type": "color" },
+        "0-60": { "value": "#FFFFFF99", "type": "color" },
+        "0-40": { "value": "#FFFFFF66", "type": "color" },
         "50": { "value": "#F8F4FF", "type": "color" },
         "100": { "value": "#ECE7F5", "type": "color" },
         "300": { "value": "#AFA4C6", "type": "color" },
@@ -98,6 +101,10 @@
       },
       "16": {
         "value": "16px",
+        "type": "fontSizes"
+      },
+     "18": {
+        "value": "18px",
         "type": "fontSizes"
       },
       "20": {
@@ -275,8 +282,14 @@
           "value": "32px",
           "type": "sizing"
         },
-          "xl": { "value": "40px", "type": "sizing" }
-      }
+        "xl": { 
+          "value": "40px", 
+          "type": "sizing" 
+        },
+        "2xl": {
+          "value": "50px",
+          "type": "sizing"
+        }
       },
       "avatar": {
         "sm": {
@@ -314,6 +327,7 @@
     "cardMin": {
       "value": "220px",
       "type": "sizing"
+    }
     },
     "breakpoint": {
       "mobile": {
@@ -366,8 +380,8 @@
   },
   "background": {
     "page": { "value": "{color.purple.25}", "type": "color" },
-    "card": { "value": "{color.neutral.50}", "type": "color" },
-    "cardStrong": { "value": "{color.neutral.0}", "type": "color" }
+    "card": { "value": "{color.neutral.0-40}", "type": "color" },
+    "morebtn": { "value": "{color.neutral.0}", "type": "color" }
   },
   "surface": {
     "primary": { "value": "{color.neutral.0}", "type": "color" },
@@ -439,7 +453,7 @@
     }
   },
   "component": {
-    "component": {
+    
       "button": {
         "primary": {
           "background": {
@@ -493,6 +507,32 @@
             "type": "spacing"
           }
         },
+        "more": {
+          "background": {
+            "value": "{color.background.morebtn}",
+            "type": "color"
+          },
+          "text": {
+            "value": "{color.text.primary}",
+            "type": "color"
+          },
+          "border": {
+            "value": "{color.border.default}",
+            "type": "color"
+          },
+          "radius": {
+            "value": "{borderRadius.pill}",
+            "type": "borderRadius"
+          },
+          "height": {
+            "value": "42px",
+            "type": "sizing"
+          },
+          "padding": {
+            "value": "{spacing.3} {spacing.3}",
+            "type": "spacing"
+          }
+        },
         "ghost": {
           "background": {
             "value": "{color.background.cardStrong}",
@@ -516,6 +556,35 @@
           },
           "paddingX": {
             "value": "{spacing.6}",
+            "type": "spacing"
+          }
+        }
+      },
+       "link": {
+        "listlink": {
+          "background": {
+            "value": "{color.neutral.0-40}",
+            "type": "color"
+          },
+          "backgroundHover": {
+            "value": "{color.neutral.0-80}",
+            "type": "color"
+          },
+          "backgroundActive": {
+            "value": "{color.brand.primaryActive}",
+            "type": "color"
+          },
+          "text": {
+            "value": "{color.text.primary}",
+            "type": "color"
+          },
+          "radius": {
+            "value": "{borderRadius.md}",
+            "type": "borderRadius"
+          },
+
+          "paddingY": {
+            "value": "{spacing.2}",
             "type": "spacing"
           }
         }
@@ -798,7 +867,7 @@
           "type": "borderRadius"
         }
       }
-    }
+
   },
   "$themes": [],
   "$metadata": {
