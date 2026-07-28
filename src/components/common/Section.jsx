@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {Link} from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import Text from "../ui/Text";
 import Icon from "../ui/Icon";
@@ -7,7 +8,7 @@ import { Column, RowBetween } from "../layout/Layout";
 function Section({
     title,
     action,
-    more,
+    moreTo,
     children,
     topOffset= 8,
     gap = 6
@@ -22,8 +23,8 @@ function Section({
                     {title}
                 </TitleText>
                 {action ? action 
-                    : more && (
-                        <MoreBtn type="button">
+                    : moreTo && (
+                        <MoreBtn to ={moreTo}>
                             <Icon component={ArrowUpRight} size="md" color="text-secondary"/>
                         </MoreBtn>
                     )}
@@ -48,8 +49,7 @@ const TitleText = styled(Text)`
       var(--spacing-${$topoffset})
     `};
 `;
-const MoreBtn = styled.button`
-     border: none;
+const MoreBtn = styled(Link)`
      background:var(--component-button-more-background);
      padding:var(--component-button-more-padding);
      border-radius:var(--component-button-more-radius);

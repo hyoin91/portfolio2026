@@ -7,7 +7,10 @@ function RecentlyProject(){
     const items=getRecentProjects(4);
 
     return(
-        <Section title="Recently Project" more>
+        <Section 
+            title="Recently Project" 
+            moreTo="/projects"
+        >
             <Column $gap={2}>
                 {items.map((project) => (
                 <ListRow

@@ -7,7 +7,9 @@ function LatestUpdates(){
     const items= getLatestUpdates(4);
 
     return(
-         <Section title="Latest Updates" more>
+         <Section 
+            title="Latest Updates" 
+        >
             <Column  $gap={2}>
                 {items.map((update) => (
                 <ListRow
