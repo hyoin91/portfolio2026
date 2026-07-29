@@ -16,10 +16,10 @@ export const projects = [
       { title: "최근 검색어 저장", desc: "localStorage 기반 검색 이력" },
     ],
     updates: [
-      { id: "gs-1", title: "Folder Drag & Drop", date: "26.05" },
-      { id: "gs-2", title: "Search History",     date: "26.05" },
-      { id: "gs-3", title: "Alarm Settings",     date: "26.05" },
-      { id: "gs-4", title: "Profile Editing",    date: "26.05" },
+      { id: "gs-1", title: "드래그 앤 드롭 폴더", date: "26.05" },
+      { id: "gs-2", title: "최근 검색어 저장",     date: "26.05" },
+      { id: "gs-3", title: "최저가 알림 설정",     date: "26.05" },
+      { id: "gs-4", title: "프로필 편집",    date: "26.05" },
     ],
   },
   {
@@ -62,7 +62,7 @@ export const projects = [
 
 /* id로 하나 찾기 — ProjectDetail이 사용 */
 export function getProject(id){
-    return projects.find((project)=> projects.id === id);
+    return projects.find((project)=> project.id === id);
 }
 /* 최근 프로젝트 N개 — RecentlyProject가 사용 */
 export function getRecentProjects (count = 4){
@@ -80,4 +80,15 @@ export function getLatestUpdates(count = 4) {
     )
     .sort((a, b) => b.date.localeCompare(a.date))
     .slice(0, count);
+}
+/* 역할별 프로젝트 개수 — ProjectState가 사용 */
+export function getRoleStats(){
+  const counts={};
+
+  projects.forEach((project)=>{
+    project.roles.forEach((role)=>{
+      counts[role] = (counts[role] ?? 0) +1
+    });
+  });
+  return counts;
 }

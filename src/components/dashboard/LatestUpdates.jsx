@@ -9,6 +9,7 @@ function LatestUpdates(){
     return(
          <Section 
             title="Latest Updates" 
+            moreTo="/projects"
         >
             <Column  $gap={2}>
                 {items.map((update) => (
