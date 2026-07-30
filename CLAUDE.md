@@ -64,7 +64,7 @@
   인수인계 메모의 "왼쪽 세로 Sidebar" 구상은 이 시안 확인 후 "상단 가로 Header"로
   변경됨.**
 
-## 현재 상태 (2026-07-24 기준)
+## 현재 상태 (2026-07-30 기준)
 
 ### 완료됨
 
@@ -112,8 +112,29 @@
   `caption`/`body`/`title`/`heading`/`display` 다섯 단계 이름 하나만 쓰는 축으로
   결정함 (실무에서도 Tailwind/Chakra 등은 축 하나가 더 일반적). `body`가 기본값.
   `title`/`heading`/`display`에는 `responsive` 서브 객체(768px 이하에서 폰트
-  크기+굵기를 같이 축소)를 추가함. `Text.jsx`는 `bold` prop(수동 강조,
-  반응형 상태에서도 우선 적용)도 지원함.
+  크기+굵기를 같이 축소)를 추가함. `caption`/`text`/`body`는 400,
+  `title`/`heading`/`display`는 500이 기본 굵기.
+- **`Text`의 굵기 = `weight` prop** (2026-07-30, 기존 `bold` 불리언 대체).
+  토큰 이름을 그대로 받아 `var(--font-weights-${weight})`로 조립하므로
+  `light`(300)/`regular`(400)/`medium`(500)/`semibold`(600)/`bold`(700) 중
+  하나를 **소문자 문자열로** 넘긴다. json에 굵기 단계를 추가하면 `Text.jsx`
+  수정 없이 바로 쓸 수 있음. 대가로 **오타를 잡아주지 않는다** —
+  `weight="semiBold"`는 없는 변수라 선언이 통째로 무시되고, `size`의 기본
+  굵기로 돌아가는 게 아니라 부모 굵기를 물려받는다.
+- **Pretendard 실제 로딩** (2026-07-30). `GlobalStyle`에 폰트 이름만 적혀
+  있고 정작 불러오는 코드가 없어서 브라우저가 Arial로 렌더 → Arial엔 400/700만
+  있어 300/500/600이 전부 무시되고 있었음. `index.html`에 Pretendard
+  **variable dynamic-subset** CDN `<link>` 추가로 해결.
+  - variable 버전의 폰트 이름은 `Pretendard`가 **아니라 `'Pretendard Variable'`**
+    (굵기 범위 `45 920`). 이름이 안 맞으면 CDN이 로딩돼도 적용 안 됨.
+  - `GlobalStyle`은 하드코딩 대신
+    `font-family: var(--font-families-base), var(--font-families-fallback);`
+    으로 토큰 경유. 폰트 교체는 json 한 줄로 끝남.
+  - **굵기가 안 먹는 것 같을 때 진단 순서**: 개발자도구 Computed 탭의
+    `font-weight`가 `300`이면 CSS는 정상이고 폰트 로딩 문제(같은 탭
+    `font-family` 확인), `400`이면 `weight` prop이 안 넘어간 것. 참고로
+    16px에서 300 vs 400은 원래 티가 거의 안 나므로 `display` 크기에서
+    `light` vs `bold`로 비교해야 판단이 된다.
 - **디자인 토큰 대개편** (아래 "디자인 토큰 아키텍처" 절 참고): core/semantic/
   component 섹션 분리, component가 semantic을 `var()` 체인으로 참조하도록 개편,
   dark에 하드코딩됐던 값들 core로 승격, 안 쓰는 색상 정리, 빌드 스크립트를
@@ -135,13 +156,31 @@
   각 열은 `Column`으로 카드를 세로로 쌓음(시안의 3열 구조).
 - **대시보드 카드 (2026-07-23~24 구현)**:
   - `common/Section.jsx` — 카드 껍데기 공통 컴포넌트. `title`/`children` 외에
-    `more`(우상단 화살표 버튼 표시), `action`(버튼 대신 커스텀 요소),
+    `moreTo`(우상단 화살표 링크의 목적지 — 이게 있을 때만 화살표를 렌더),
+    `action`(화살표 대신 커스텀 요소, `moreTo`보다 우선),
     `topOffset`(제목 위 여백, spacing 단계 숫자, 기본 8),
-    `gap`(카드 내부 세로 간격, 기본 4) prop 지원. **prop을 더 뚫기 전에
+    `gap`(카드 내부 세로 간격, 기본 6) prop 지원. **prop을 더 뚫기 전에
     "값 3개가 항상 세트로 바뀌면 prop이 아니라 `variant`" 기준 적용할 것**
     (예: 시안의 어두운 Key Features 패널 → `variant="feature"`).
+    원래 `more`(불리언) + `moreTo` 둘 다 두려다 `moreTo` 하나로 합쳤음 —
+    **"둘 중 하나만 있으면 고장나는 prop 쌍은 애초에 하나로 합친다"**
+    (`more`만 주면 `<Link to={undefined}>`가 되어 경고가 남). 2026-07-28.
   - `ui/Badge.jsx` — `variant`로 `frontend`/`publishing`/`design`/`default`
-    토큰 연결.
+    토큰 연결. 함수 몸통에 `return`이 빠져 있어 앱 전체의 배지가 **아무 경고도
+    없이 안 보이던** 버그가 있었음(2026-07-30 수정). React 18은 컴포넌트가
+    `undefined`를 반환해도 에러를 안 내고 "그릴 것 없음"으로 넘어간다 —
+    화면에서 뭔가 통째로 사라졌으면 `return` 누락을 먼저 의심할 것.
+  - `dashboard/ProjectStateCard/` (`ProjectState.jsx` + `StateBar.jsx`) —
+    역할별 프로젝트 개수를 비율 막대로 표시. `Total`은 `Section`의 `action`
+    슬롯에 넣음(화살표 대신). 숫자는 하드코딩이 아니라 `getRoleStats()`로
+    `projects.js`에서 집계 — 시안의 `1/9/9`는 디자인용 예시 숫자이고 실제
+    데이터로는 `1/1/4`가 나오는 게 정상. 막대는 `flex: 1 1 N%`(`RoleBar`의
+    `0 0 N%`와 다름) — `$gap`이 있는 `Row`에서 `0 0`이면 퍼센트 합+gap이
+    부모를 넘쳐서 잘린다.
+  - `dashboard/FeaturesProject.jsx` — 굿소비 대표 프로젝트 카드(썸네일 +
+    이름/요약 + 역할 배지 + 설명). 썸네일은
+    `src/assets/images/project/ddoksobi.svg`. **Key Features 패널은 아직
+    안 붙였음** (아래 "다음 작업 순서" 1번).
   - `dashboard/ListRow.jsx` — Recently Project와 Latest Updates가 공유하는
     한 줄. `styled(Link)`라 클릭 시 `/projects/:id`로 이동.
     `Name`은 `flex: 0 0 116px` 고정폭이라 모든 행의 설명 시작 x좌표가 정렬됨.
@@ -150,9 +189,27 @@
     `dashboard/Welcome.jsx`, `RoleBalanceCard/`, `StatsCard/`.
 - **`src/data/projects.js`가 프로젝트 데이터의 유일한 원본**. 대시보드 카드는
   목데이터를 자체 보유하지 않고 아래 헬퍼로 가공해서 씀:
-  `getProject(id)` / `getRecentProjects(n)` / `getLatestUpdates(n)`
-  (`getLatestUpdates`는 각 프로젝트의 `updates`를 `flatMap`으로 펼쳐 최신순 정렬).
+  `getProject(id)` / `getRecentProjects(n)` / `getLatestUpdates(n)` /
+  `getRoleStats()`
+  (`getLatestUpdates`는 각 프로젝트의 `updates`를 `flatMap`으로 펼쳐 최신순 정렬,
+  `getRoleStats`는 `roles`를 세어 `{ frontend: 1, publishing: 4, ... }` 반환).
   `ProjectDetail`도 같은 파일에서 읽음.
+  - **프로젝트 추가 = 이 배열에 객체 하나 추가.** 상세 페이지 파일을 새로
+    만들지 않는다 (`/projects/:id` 동적 라우트 + `ProjectDetail/index.jsx`
+    한 개가 전부 담당, 객체의 `id`가 곧 URL). 사용자가 이 부분을 여러 번
+    물어봤으므로 **"파일이 아니라 데이터를 늘린다"**를 명확히 설명할 것.
+  - `features`/`updates`는 비어도 `[]`를 반드시 넣을 것 (아예 빼면
+    `project.features.length`에서 페이지가 죽음). `roles`는 정확히
+    `"frontend"`/`"publishing"`/`"design"` 소문자만.
+  - `ROLE_LABELS` (같은 파일) — 역할 코드 → 화면 표시 이름
+    (`frontend` → `Front-end` 등). `ProjectState`와 `FeaturesProject`가
+    공유. **`Badge`의 `variant`에는 코드값(`role`)을, 화면 텍스트에는
+    `ROLE_LABELS[role]`을 넘긴다** (variant는 토큰 이름에 그대로 붙기 때문).
+- **콘텐츠 언어 규칙 (2026-07-30 확정)**: UI 라벨(카드 제목·메뉴·버튼)은 영어,
+  **내 프로젝트 콘텐츠는 한국어**. 그리고 **같은 기능은 앱 어디서나 토씨 하나까지
+  같은 이름**으로 부른다 (`updates`의 `title`을 `features`의 `title`과 글자
+  단위로 일치시킨 이유 — 원래 `Folder Drag & Drop` vs `드래그 앤 드롭 폴더`로
+  갈려 있었음).
 - **`src/styles/reset.css`**에 `h1~h6, p { margin: 0 }` +
   `h1~h6 { font-size: inherit; font-weight: inherit }` 추가함. 제목 태그는
   의미(구조)만 담당하고 크기는 `Text`의 `size` prop이 100% 담당하는 구조.
@@ -175,31 +232,46 @@
 
 ## 시안 기준 남은 대시보드 카드
 
-시안 이미지: 저장소 루트의 `시안.png`. 3열 구조 기준으로 **아직 안 만든 것**:
+시안 이미지: 저장소 루트의 `시안.png`. Project State와 Features Project는
+구현 완료. 3열 구조 기준으로 **아직 안 만든 것**:
 
-- **오른쪽 열 1 — Project State**: 우상단에 `Total 18`, 아래에 Frontend/Design/
-  Publishing 3개 막대(각각 1 / 9 / 9). `RoleBalance`와 비슷한 막대 UI인데
-  숫자 라벨이 막대 안에 들어가는 형태.
-- **오른쪽 열 2 — Features Project**: 굿소비 대표 프로젝트 카드. 앱 스크린샷
-  썸네일 + 제목/한 줄 소개 + 역할 칩 3개(Front-end / UI Design / Publishing) +
-  설명 문단. 우상단 화살표(→ `/projects/goodsobi`).
-- **Key Features 패널**: Features Project 아래에 붙는 **어두운 청록 배경** 패널.
-  2×2 그리드로 기능 4개(최저가 알림 설정 / 드래그 앤 드롭 폴더 / 찜 상품 관리 /
-  최근 검색어 저장), 각 항목은 제목+한 줄 설명. 토큰은 이미 준비돼 있음
-  (`--color-surface-feature-panel`, `--color-surface-feature-card`,
-  `--component-feature-card-*`). `Section`에 `variant="feature"`를 추가해서
-  처리할지 별도 컴포넌트로 뺄지는 만들 때 판단.
+- **Key Features 패널**: Features Project 카드 **안**, 썸네일+설명 `Row`
+  아래에 붙는 **어두운 청록 배경** 패널. 2×2 그리드로 기능 4개(최저가 알림
+  설정 / 드래그 앤 드롭 폴더 / 찜 상품 관리 / 최근 검색어 저장), 각 항목은
+  제목+한 줄 설명. 데이터는 `project.features`를 그대로 씀.
+  - `Section`에 `variant="feature"`를 추가하는 방향으로 결정
+    (배경/radius/padding/제목 스타일 4개가 한 세트로 바뀌므로 prop이 아니라
+    variant가 맞는 케이스). `variant`가 제목 크기·색까지 같이 결정.
+  - **착수 전에 토큰 2건을 먼저 고쳐야 함** (2026-07-30 분석):
+    1. `semantic-light`의 `color.surface.featureCard`가 `{color.slate.100}`
+       (`#DCE4E7`, 거의 흰색)이라 **어두운 패널 위에 흰 박스**가 나온다.
+       다크에서는 `{color.slate.700}`로 정상. 같은 토큰이 테마마다 뜻이
+       달라지는 상태 → 라이트를 `{color.slate.600}`으로 바꿔 양쪽 다
+       "패널보다 한 톤 밝은 박스"로 통일. (`featureCardDark`,
+       `core.color.slate.100/900`은 그러면 미사용이 되므로 정리 대상)
+    2. **어두운 패널 위 글자색 토큰이 없다.** `text.inverse`는 "페이지 배경의
+       반대색"이라 다크모드에서 어두운 색이 되어버림(패널은 양쪽 테마에서 항상
+       어두움) → `color.text.onFeature` = `{color.neutral.0}`,
+       `onFeatureMuted` = `{color.neutral.0-60}`을 **semantic-light와
+       semantic-dark 양쪽에 같은 값으로** 추가. 이름은 `text.white`처럼
+       색을 박지 말고 "어디 위에 올라가는지"로 지을 것.
 
 ## 다음 작업 순서
 
-1. **`Section`의 `more` 버튼에 링크 연결** (2026-07-24 사용자 지정, 최우선).
-   현재 `<MoreBtn type="button">`이라 클릭해도 아무 동작 없음.
-   `RecentlyProject`는 `/projects`로 이동. `Section`에 `moreTo` 같은 prop을
-   추가해 목적지를 받고, `styled(Link)`로 바꾸는 방향.
-2. 시안 기준 남은 카드 구현 (위 절 참고): Project State → Features Project →
-   Key Features 패널 순.
-3. `Projects` 페이지 실제 구현 (`/projects`, `more` 버튼의 목적지이므로 1번
-   직후에 필요해짐).
+0. **커밋 안 된 오타 하나 먼저**: `ProjectStateCard/ProjectState.jsx`의
+   `lobal: ROLE_LABELS[meta.role]` → `label:`. 지금 `StateBar`가 읽는
+   `role.label`이 `undefined`라 **막대 위 Frontend/Design/Publishing 라벨이
+   안 보이는 상태**. 이 오타 때문에 해당 파일만 커밋에서 빼뒀음.
+1. **Key Features 패널** (2026-07-30 사용자 지정, 최우선). 위 "시안 기준 남은
+   대시보드 카드" 절 참고 — **토큰 2건 수정 → `npm run tokens` →
+   `Section`에 `variant="feature"` → `KeyFeatures.jsx` 새로 만들어
+   `FeaturesProject`의 `Row` 아래에 넣기** 순서.
+2. **`Header`의 로고를 링크로 만들기** (2026-07-30 사용자 지정). 클릭 시 `/`로
+   이동. `Header.jsx`에 `import {Link} from "react-router-dom"`이 이미 들어와
+   있는데 아직 안 쓰는 상태(그래서 커밋에서 빼둠) — `Logo`(`styled.img`)를
+   `Link`로 감싸거나 `styled(Link)` 안에 넣는 방향.
+3. `Projects` 페이지 실제 구현 (`/projects` — Recently Project와 Latest
+   Updates의 화살표 목적지라 지금 빈 화면임).
 4. `ProjectDetail` 페이지를 시안 수준으로 마감.
 5. `DesignSystem` 페이지 구현 (Core/Semantic/Component 토큰, 컬러 팔레트,
    타이포그래피, Button/Badge/Chip/Card 샘플, Light/Dark 구조 소개).
