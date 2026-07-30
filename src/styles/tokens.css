@@ -43,8 +43,9 @@
   --color-neutral-0-40: #FFFFFF66;
   --color-glass-white16: rgba(255, 255, 255, 0.16);
   --color-glass-white72: rgba(255, 255, 255, 0.72);
-  --font-families-base: Pretendard;
-  --font-families-fallback: Inter, Arial, sans-serif;
+  --font-families-base: 'Pretendard Variable';
+  --font-families-fallback: Pretendard, Inter, Arial, sans-serif;
+  --font-weights-light: 300;
   --font-weights-regular: 400;
   --font-weights-medium: 500;
   --font-weights-semibold: 600;

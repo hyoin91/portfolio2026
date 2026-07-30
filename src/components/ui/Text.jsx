@@ -3,8 +3,9 @@ import typography from "../../styles/typography";
 
 const StyledText = styled.span`
   font-size: ${({ $size }) => typography[$size].fontSize};
-  font-weight: ${({ $size, $bold }) =>
-    $bold ? "var(--font-weights-semibold)" : typography[$size].fontWeight};
+  font-weight: ${({ $size, $weight }) =>
+    $weight ? `var(--font-weights-${$weight})` 
+            : typography[$size].fontWeight};
   line-height: ${({ $size }) => typography[$size].lineHeight};
   ${({ $size }) =>
     typography[$size].letterSpacing &&
@@ -12,12 +13,12 @@ const StyledText = styled.span`
   color: ${({ $color }) => `var(--color-${$color})`};
 
   @media (max-width: 768px) {
-    ${({ $size, $bold }) => {
+    ${({ $size, $weight }) => {
       const r = typography[$size].responsive;
       if (!r) return "";
       return `
         font-size: ${r.fontSize};
-        font-weight: ${$bold ? "var(--font-weights-semibold)" : r.fontWeight};
+        font-weight: ${$weight ? `var(--font-weights-${$weight})` : r.fontWeight};
       `;
     }}
   }
@@ -27,12 +28,12 @@ function Text({
   as = "span",
   size = "body",
   color = "text-primary",
-  bold = false,
+  weight,  
   children,
   ...rest
 }) {
   return (
-    <StyledText as={as} $size={size} $color={color} $bold={bold} {...rest}>
+    <StyledText as={as} $size={size} $color={color} $weight={weight} {...rest}>
       {children}
     </StyledText>
   );

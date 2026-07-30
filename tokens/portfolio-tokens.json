@@ -56,15 +56,19 @@
     },
     "fontFamilies": {
       "base": {
-        "value": "Pretendard",
+       "value": "'Pretendard Variable'",
         "type": "fontFamilies"
       },
       "fallback": {
-        "value": "Inter, Arial, sans-serif",
+         "value": "Pretendard, Inter, Arial, sans-serif",
         "type": "fontFamilies"
       }
     },
     "fontWeights": {
+       "light": {
+        "value": "300",
+        "type": "fontWeights"
+      },
       "regular": {
         "value": "400",
         "type": "fontWeights"

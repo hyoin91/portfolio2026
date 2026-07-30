@@ -6,7 +6,7 @@ const GlobalStyle = createGlobalStyle`
   body {
     background: var(--color-background-page);
     color: var(--color-text-primary);
-    font-family: Pretendard, Inter, Arial, sans-serif;
+    font-family: var(--font-families-base), var(--font-families-fallback);
     transition:
       background-color var(--motion-normal),
       color var(--motion-normal);

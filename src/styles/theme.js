@@ -102,6 +102,7 @@ export const lightTheme = {
     "fallback": "var(--font-families-fallback)"
   },
   "fontWeights": {
+    "light": "var(--font-weights-light)",
     "regular": "var(--font-weights-regular)",
     "medium": "var(--font-weights-medium)",
     "semibold": "var(--font-weights-semibold)",
@@ -440,6 +441,7 @@ export const darkTheme = {
     "fallback": "var(--font-families-fallback)"
   },
   "fontWeights": {
+    "light": "var(--font-weights-light)",
     "regular": "var(--font-weights-regular)",
     "medium": "var(--font-weights-medium)",
     "semibold": "var(--font-weights-semibold)",
