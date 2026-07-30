@@ -11,6 +11,7 @@ import SkillsCard from "../../components/dashboard/SkillsCard";
 import RecentlyProject from "../../components/dashboard/RecentlyProject";
 import LatestUpdates from "../../components/dashboard/LatestUpdates";
 import ProjectState from "../../components/dashboard/ProjectStateCard/ProjectState";
+import FeaturesProject from"../../components/dashboard/FeaturesProject";
 
 function Dashboard() {
   return (
@@ -33,7 +34,7 @@ function Dashboard() {
 
         <Column $gap={4}>
           <ProjectState/>
-          {/* FeaturesProject */}
+           <FeaturesProject />
         </Column>
       </DashboardGrid>
    </Page>

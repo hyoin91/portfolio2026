@@ -1,3 +1,8 @@
+export const ROLE_LABELS={
+  frontend: "Front-end",
+  design: "UI Design",
+  publishing: "Publishing",
+}
 export const projects = [
   {
     id: "goodsobi",
