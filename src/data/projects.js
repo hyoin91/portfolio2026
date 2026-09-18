@@ -15,10 +15,10 @@ export const projects = [
       "상품의 최저가 알림과 찜 관리를 제공하는 React 기반 소비 관리 서비스입니다.",
     stack: ["React", "styled-components", "Vite"],
     features: [
-      { title: "최저가 알림 설정", desc: "가격 조건 지정 후 알림 수신" },
-      { title: "드래그 앤 드롭 폴더", desc: "DnD 기반 찜 상품 정리" },
-      { title: "찜 상품 관리", desc: "저장·삭제·Undo 지원" },
-      { title: "최근 검색어 저장", desc: "localStorage 기반 검색 이력" },
+      { title: "최저가 알림 설정", desc: "가격 조건 지정 후 알림 수신", icon: "alert" },
+      { title: "드래그 앤 드롭 폴더", desc: "DnD 기반 찜 상품 정리", icon: "organize" },
+      { title: "찜 상품 관리", desc: "저장·삭제·Undo 지원", icon: "save" },
+      { title: "최근 검색어 저장", desc: "localStorage 기반 검색 이력", icon: "search" },
     ],
     updates: [
       { id: "gs-1", title: "드래그 앤 드롭 폴더", date: "26.05" },

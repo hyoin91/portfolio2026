@@ -64,6 +64,9 @@ const RowBottom =  styled(Row)`
    
 `;
 const Thumb = styled.img`
+ flex: 0 0 auto;
+    width: 65px;
+    height: auto;
 `;
 const FeaturesDescWrap = styled.div`
     

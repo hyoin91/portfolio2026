@@ -4,7 +4,7 @@ import { Column } from "../layout/Layout";
 import { getRecentProjects } from "../../data/projects";
 
 function RecentlyProject(){
-    const items=getRecentProjects(4);
+    const items=getRecentProjects(5);
 
     return(
         <Section 

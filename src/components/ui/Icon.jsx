@@ -20,10 +20,10 @@ const StyledIcon = styled.span`
   }
 `;
 
-function Icon({ component: Component, src, size = "md", alt = "", color = "text-primary", ...rest }) {
+function Icon({ component: Component, src, size = "md", alt = "", color = "text-primary", strokeWidth, ...rest }) {
   return (
     <StyledIcon $size={size} $color={color} {...rest}>
-      {Component && <Component stroke="currentColor" />}
+      {Component && <Component stroke="currentColor" strokeWidth={strokeWidth} />}
       {src && <img src={src} alt={alt} />}
     </StyledIcon>
   );

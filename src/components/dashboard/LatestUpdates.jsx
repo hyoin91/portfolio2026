@@ -4,7 +4,7 @@ import { Column } from "../layout/Layout";
 import { getLatestUpdates } from "../../data/projects";
 
 function LatestUpdates(){
-    const items= getLatestUpdates(4);
+    const items= getLatestUpdates(5);
 
     return(
          <Section 

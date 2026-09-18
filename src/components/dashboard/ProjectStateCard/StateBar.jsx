@@ -42,6 +42,6 @@ const Segment = styled(Row)`
   align-items: center;
   justify-content: center;
   background: var(--color-${({ $color }) => $color});
-  height: 4.8rem;
+  height: 3.5rem;
   border-radius: var(--border-radius-pill);
 `;

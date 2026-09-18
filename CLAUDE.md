@@ -64,7 +64,7 @@
   인수인계 메모의 "왼쪽 세로 Sidebar" 구상은 이 시안 확인 후 "상단 가로 Header"로
   변경됨.**
 
-## 현재 상태 (2026-07-30 기준)
+## 현재 상태 (2026-09-18 기준)
 
 ### 완료됨
 
@@ -135,6 +135,15 @@
     `font-family` 확인), `400`이면 `weight` prop이 안 넘어간 것. 참고로
     16px에서 300 vs 400은 원래 티가 거의 안 나므로 `display` 크기에서
     `light` vs `bold`로 비교해야 판단이 된다.
+- **`Text`에서 `line-height` 제거** (2026-09-18). `typography.js`의 6개 사이즈
+  전부에서 `lineHeight`를 빼고 `Text.jsx`의 `line-height` 선언도 삭제 —
+  이제 모든 `Text`는 브라우저 기본값(`normal`, 폰트가 신고한 값)을 쓴다.
+  `--line-heights-tight/base/relaxed` 토큰은 `tokens.css`에 남아 있으므로,
+  특정 자리만 줄간격이 필요하면 `styled(Text)`로 감싸 한 줄 덮어쓴다.
+- **`Icon`에 `strokeWidth` prop 추가** (2026-09-18). lucide 아이콘의 선 굵기
+  (기본 2)를 조절하려고 뚫음. `...rest`는 바깥 `span`으로 가기 때문에 따로
+  빼내서 아이콘 컴포넌트에 직접 넘겨야 한다. 안 넘기면 `undefined` → lucide
+  기본값이라 기존 사용처는 영향 없음.
 - **디자인 토큰 대개편** (아래 "디자인 토큰 아키텍처" 절 참고): core/semantic/
   component 섹션 분리, component가 semantic을 `var()` 체인으로 참조하도록 개편,
   dark에 하드코딩됐던 값들 core로 승격, 안 쓰는 색상 정리, 빌드 스크립트를
@@ -158,13 +167,24 @@
   - `common/Section.jsx` — 카드 껍데기 공통 컴포넌트. `title`/`children` 외에
     `moreTo`(우상단 화살표 링크의 목적지 — 이게 있을 때만 화살표를 렌더),
     `action`(화살표 대신 커스텀 요소, `moreTo`보다 우선),
-    `topOffset`(제목 위 여백, spacing 단계 숫자, 기본 8),
-    `gap`(카드 내부 세로 간격, 기본 6) prop 지원. **prop을 더 뚫기 전에
+    `topOffset`(제목 위 여백, spacing 단계 숫자), `gap`(카드 내부 세로 간격),
+    `variant`(`"default"` | `"feature"`) prop 지원. **prop을 더 뚫기 전에
     "값 3개가 항상 세트로 바뀌면 prop이 아니라 `variant`" 기준 적용할 것**
     (예: 시안의 어두운 Key Features 패널 → `variant="feature"`).
     원래 `more`(불리언) + `moreTo` 둘 다 두려다 `moreTo` 하나로 합쳤음 —
     **"둘 중 하나만 있으면 고장나는 prop 쌍은 애초에 하나로 합친다"**
     (`more`만 주면 `<Link to={undefined}>`가 되어 경고가 남). 2026-07-28.
+    - **`variant` 구조 (2026-09-18)**: 파일 상단의 `VARIANTS` 객체 한 곳에
+      variant별 `titleSize`/`titleColor`/`topOffset`/`gap`/`card`(styled-components의
+      `css` 헬퍼로 감싼 CSS 덩어리)를 모아둔다. 함수 첫 줄에서
+      `const style = VARIANTS[variant];`로 꺼내 쓰고, `Card`는
+      `${({$variant}) => VARIANTS[$variant].card}` 한 줄로 끝. **이 `const style`
+      줄이 빠지면 `style is not defined`로 앱 전체가 하얗게 죽는다** (실제로 발생).
+    - `gap`/`topOffset`은 `gap ?? style.gap` 형태라 **인스턴스별 override 가능**
+      (`<Section gap={3}>`). `||`가 아니라 `??`인 이유는 `gap={0}`을 살리기 위해서.
+    - `default` variant의 카드에 `overflow: hidden`이 있음 — Key Features 패널이
+      카드 밖으로 파고들어 **잘려 보이게** 하기 위한 것. 나중에 카드 밖으로
+      나와야 하는 UI(툴팁/드롭다운)를 넣으면 이것 때문에 잘린다.
   - `ui/Badge.jsx` — `variant`로 `frontend`/`publishing`/`design`/`default`
     토큰 연결. 함수 몸통에 `return`이 빠져 있어 앱 전체의 배지가 **아무 경고도
     없이 안 보이던** 버그가 있었음(2026-07-30 수정). React 18은 컴포넌트가
@@ -179,8 +199,22 @@
     부모를 넘쳐서 잘린다.
   - `dashboard/FeaturesProject.jsx` — 굿소비 대표 프로젝트 카드(썸네일 +
     이름/요약 + 역할 배지 + 설명). 썸네일은
-    `src/assets/images/project/ddoksobi.svg`. **Key Features 패널은 아직
-    안 붙였음** (아래 "다음 작업 순서" 1번).
+    `src/assets/images/project/ddoksobi.svg`. 아래에 `KeyFeatures`를 붙여
+    Key Features 패널까지 완료(2026-09-18).
+  - `dashboard/KeyFeatures.jsx` (2026-09-18 신규) — `FeaturesProject` 안에
+    들어가는 어두운 청록 패널. `Section variant="feature"` + 2×2 `Grid`.
+    - `KeyWrap`(바깥 div)이 `margin-top: auto`(카드에 빈 공간이 남으면 바닥에
+      붙임) + `margin-bottom: calc(var(--component-card-default-padding) * -2)`
+      (카드 아래 패딩을 상쇄하고 24px 더 파고들어 **잘려 보이게**). `absolute`로
+      하려다 카드 높이 계산이 깨져서 음수 마진으로 바꾼 것.
+    - `Glow`(styled.span) — 시안의 뿌연 원. `$size`/`$top`/`$left`를 받아
+      `radial-gradient` + `border-radius: 50%`. 여러 개 복붙해서 배치한다.
+      `z-index: -1`이 패널 배경 아래로 안 내려가는 건 feature variant의
+      `isolation: isolate` 덕분.
+    - `FEATURE_ICONS` — `"alert"`/`"save"`/`"organize"`/`"search"` 문자열 →
+      lucide 컴포넌트 매핑. **데이터(`projects.js`)에는 문자열만 넣고**
+      컴포넌트 매핑은 화면 쪽에서 한다(`ROLE_LABELS`와 같은 패턴 — 데이터
+      파일이 lucide-react에 의존하지 않게). 없는 키는 `?? Sparkles`로 폴백.
   - `dashboard/ListRow.jsx` — Recently Project와 Latest Updates가 공유하는
     한 줄. `styled(Link)`라 클릭 시 `/projects/:id`로 이동.
     `Name`은 `flex: 0 0 116px` 고정폭이라 모든 행의 설명 시작 x좌표가 정렬됨.
@@ -230,45 +264,45 @@
 - `ListRow`의 프로젝트 로고 자리는 아직 실제 이미지가 없어 `Dot`(연보라 사각형)
   플레이스홀더. 로고 svg 확보되면 `Icon`으로 교체할 것.
 
-## 시안 기준 남은 대시보드 카드
+## 시안 기준 대시보드 카드
 
-시안 이미지: 저장소 루트의 `시안.png`. Project State와 Features Project는
-구현 완료. 3열 구조 기준으로 **아직 안 만든 것**:
+시안 이미지: 저장소 루트의 `시안.png`. **시안에 있는 카드는 2026-09-18 기준
+전부 구현 완료**(Key Features 패널이 마지막이었음). 남은 일은 아래 "다음 작업
+순서" 참고.
 
-- **Key Features 패널**: Features Project 카드 **안**, 썸네일+설명 `Row`
-  아래에 붙는 **어두운 청록 배경** 패널. 2×2 그리드로 기능 4개(최저가 알림
-  설정 / 드래그 앤 드롭 폴더 / 찜 상품 관리 / 최근 검색어 저장), 각 항목은
-  제목+한 줄 설명. 데이터는 `project.features`를 그대로 씀.
-  - `Section`에 `variant="feature"`를 추가하는 방향으로 결정
-    (배경/radius/padding/제목 스타일 4개가 한 세트로 바뀌므로 prop이 아니라
-    variant가 맞는 케이스). `variant`가 제목 크기·색까지 같이 결정.
-  - **착수 전에 토큰 2건을 먼저 고쳐야 함** (2026-07-30 분석):
-    1. `semantic-light`의 `color.surface.featureCard`가 `{color.slate.100}`
-       (`#DCE4E7`, 거의 흰색)이라 **어두운 패널 위에 흰 박스**가 나온다.
-       다크에서는 `{color.slate.700}`로 정상. 같은 토큰이 테마마다 뜻이
-       달라지는 상태 → 라이트를 `{color.slate.600}`으로 바꿔 양쪽 다
-       "패널보다 한 톤 밝은 박스"로 통일. (`featureCardDark`,
-       `core.color.slate.100/900`은 그러면 미사용이 되므로 정리 대상)
-    2. **어두운 패널 위 글자색 토큰이 없다.** `text.inverse`는 "페이지 배경의
-       반대색"이라 다크모드에서 어두운 색이 되어버림(패널은 양쪽 테마에서 항상
-       어두움) → `color.text.onFeature` = `{color.neutral.0}`,
-       `onFeatureMuted` = `{color.neutral.0-60}`을 **semantic-light와
-       semantic-dark 양쪽에 같은 값으로** 추가. 이름은 `text.white`처럼
-       색을 박지 말고 "어디 위에 올라가는지"로 지을 것.
+### Key Features 패널 (2026-09-18 완료) — 구현하며 정해진 것
+
+- `color.surface.featurePanel`은 **단색이 아니라 그라데이션**이다.
+  라이트 `linear-gradient(200deg, {color.teal.500} 0%, {color.teal.700} 90%)`,
+  다크 `linear-gradient(200deg, {color.slate.700} 0%, {color.slate.900} 90%)`.
+  **값 하나에 참조를 여러 개 써도 되고**, `build-css.js`가 전부 `var()`로 바꾼다.
+  `"type": "color"`는 빌드에 아무 영향이 없으므로 그대로 둔다.
+- **어두운 패널 위 글자색**: `text.onFeature`(`{color.neutral.0}`),
+  `text.onFeatureMuted`(`{color.neutral.0-60}`)를 **semantic-light/dark 양쪽에
+  같은 값으로** 넣었다. `text.inverse`는 "페이지 배경의 반대색"이라 다크에서
+  뒤집혀 못 쓴다 — 패널은 두 테마 모두 항상 어둡기 때문. 토큰 이름은 색이 아니라
+  **"어디 위에 올라가는 글자인지"**로 짓는다.
+- `color.surface.featureGlow`(`{color.slate.200}` `#cfe3eb`) — `Glow` 원의 색.
+  라이트/다크 같은 값.
+- `color.border.feature` → `{color.glass.white42}`(흰색 42%), 양쪽 테마 공통.
+  선 굵기 `0.5px`는 색이 아니라 형태값이라 토큰화하지 않고 컴포넌트에 둔다.
+- `surface.featureCard`는 라이트도 `{color.slate.600}`으로 내려서 양쪽 테마 모두
+  "패널보다 한 톤 밝은 박스"가 되게 했다(라이트가 `slate.100`이라 어두운 패널 위에
+  흰 박스가 나오던 문제). `featureCardDark`는 `{color.slate.800}`.
+  → `color.slate.100`, `color.slate.400`, `glass.white72`는 이제 미사용(정리 대상).
 
 ## 다음 작업 순서
 
-0. **커밋 안 된 오타 하나 먼저**: `ProjectStateCard/ProjectState.jsx`의
-   `lobal: ROLE_LABELS[meta.role]` → `label:`. 지금 `StateBar`가 읽는
-   `role.label`이 `undefined`라 **막대 위 Frontend/Design/Publishing 라벨이
-   안 보이는 상태**. 이 오타 때문에 해당 파일만 커밋에서 빼뒀음.
-1. **Key Features 패널** (2026-07-30 사용자 지정, 최우선). 위 "시안 기준 남은
-   대시보드 카드" 절 참고 — **토큰 2건 수정 → `npm run tokens` →
-   `Section`에 `variant="feature"` → `KeyFeatures.jsx` 새로 만들어
-   `FeaturesProject`의 `Row` 아래에 넣기** 순서.
-2. **`Header`의 로고를 링크로 만들기** (2026-07-30 사용자 지정). 클릭 시 `/`로
-   이동. `Header.jsx`에 `import {Link} from "react-router-dom"`이 이미 들어와
-   있는데 아직 안 쓰는 상태(그래서 커밋에서 빼둠) — `Logo`(`styled.img`)를
+1. **대시보드 3열의 열 높이 맞추기** (2026-09-18 사용자 지정, 최우선).
+   지금 각 `Column`(열)에 쌓인 카드들의 총 높이가 제각각이라 열마다 아래쪽
+   여백이 다르게 남는다. 열 안의 카드들이 남는 높이를 자연스럽게 나눠 갖도록
+   맞추는 작업. (참고: `DashboardGrid`는 `grid-template-columns: 1fr 1.5fr 1.4fr`,
+   각 열은 `Column`. grid 아이템은 기본이 `stretch`라 열 자체는 이미 같은 높이이고,
+   그 안에서 카드 높이를 어떻게 분배할지가 관건 — `flex: 1`을 어느 카드에 줄지,
+   아니면 `Section`에 높이 관련 prop/variant를 둘지부터 정할 것.)
+2. **`Header`의 로고를 링크로 만들기**. 클릭 시 `/`로 이동.
+   `Header.jsx`에 `import {Link} from "react-router-dom"`이 이미 들어와 있는데
+   아직 안 쓰는 상태(그래서 계속 커밋에서 빼두고 있음) — `Logo`(`styled.img`)를
    `Link`로 감싸거나 `styled(Link)` 안에 넣는 방향.
 3. `Projects` 페이지 실제 구현 (`/projects` — Recently Project와 Latest
    Updates의 화살표 목적지라 지금 빈 화면임).

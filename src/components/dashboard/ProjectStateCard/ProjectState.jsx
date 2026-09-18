@@ -28,8 +28,9 @@ function  ProjectState(){
     return(
     <Section
         title="Project State"
+        gap={1}
         action={
-            <TotalRow $gap={1}>
+            <TotalRow $gap={2}>
                 <Text 
                     as="span"
                     size="caption"

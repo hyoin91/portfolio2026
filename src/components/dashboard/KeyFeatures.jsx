@@ -1,7 +1,18 @@
 import styled from "styled-components";
 import Text from "../ui/Text";
+import Icon from "../ui/Icon";
+
 import Section from "../common/Section";
-import { Column } from "../layout/Layout";
+import { Column, Row } from "../layout/Layout";
+
+import { Bell, Bookmark, FolderTree, Search, Sparkles } from "lucide-react";
+
+const FEATURE_ICONS={
+    alert:Bell,
+    save:  Bookmark,
+    organize: FolderTree,
+    search: Search,
+};
 
 function  KeyFeatures ({features=[]}){
 
@@ -24,7 +35,16 @@ function  KeyFeatures ({features=[]}){
                         key={feature.title}
                         $gap={1}
                     >
-                        <Text
+                        <IconWrap>
+                            <Icon
+                                component={FEATURE_ICONS[feature.icon] ?? Sparkles}
+                                 size="md"
+                                color="surface-feature-glow"
+                                 strokeWidth={1.25}
+/>
+                        </IconWrap>
+                         <Column $gap={0}>
+                         <Text
                             size="text"
                             weight="semibold"
                             color="text-on-feature"
@@ -37,6 +57,8 @@ function  KeyFeatures ({features=[]}){
                         >
                             {feature.desc}
                         </Text>
+                         </Column>
+                        
                     </Item>
                 ))}
             </Grid>
@@ -80,10 +102,18 @@ const Glow = styled.span`
     pointer-events: none;
 `;
 
-const Item = styled(Column)`
-
+const Item = styled(Row)`
+    align-items: center;
     border: 0.5px solid var(--component-feature-card-border);
     border-radius: var(--component-feature-card-radius);
-    padding: var(--component-feature-card-padding);
+    padding: var(--spacing-3);
+
+`;
+const IconWrap = styled.div`
+    flex: 0 0 auto;
+    display: flex;
+    padding: var(--spacing-2);
+    border-radius: 50%;
+    background: var(--color-surface-feature-card);
 
 `;

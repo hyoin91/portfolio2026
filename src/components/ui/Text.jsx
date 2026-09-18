@@ -6,7 +6,6 @@ const StyledText = styled.span`
   font-weight: ${({ $size, $weight }) =>
     $weight ? `var(--font-weights-${$weight})` 
             : typography[$size].fontWeight};
-  line-height: ${({ $size }) => typography[$size].lineHeight};
   ${({ $size }) =>
     typography[$size].letterSpacing &&
     `letter-spacing: ${typography[$size].letterSpacing};`}
