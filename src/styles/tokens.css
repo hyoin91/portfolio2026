@@ -25,6 +25,8 @@
   --color-teal-800: #244D5E;
   --color-teal-900: #18323D;
   --color-slate-100: #DCE4E7;
+  --color-slate-200: #cfe3eb;
+  --color-slate-400: #82A5B2;
   --color-slate-600: #3F5559;
   --color-slate-700: #2E4650;
   --color-slate-800: #1F3C47;
@@ -42,6 +44,7 @@
   --color-neutral-0-60: #FFFFFF99;
   --color-neutral-0-40: #FFFFFF66;
   --color-glass-white16: rgba(255, 255, 255, 0.16);
+  --color-glass-white42: rgba(255, 255, 255, 0.42);
   --color-glass-white72: rgba(255, 255, 255, 0.72);
   --font-families-base: 'Pretendard Variable';
   --font-families-fallback: Pretendard, Inter, Arial, sans-serif;
@@ -130,20 +133,23 @@
   --color-background-morebtn: var(--color-neutral-0);
   --color-surface-primary: var(--color-neutral-0);
   --color-surface-secondary: var(--color-neutral-50);
-  --color-surface-feature-panel: var(--color-accent-deep);
-  --color-surface-feature-card: var(--color-slate-100);
-  --color-surface-feature-card-dark: var(--color-slate-600);
+  --color-surface-feature-panel: linear-gradient(0deg, var(--color-teal-500) 0%, var(--color-teal-700) 90%);
+  --color-surface-feature-glow: var(--color-slate-200);
+  --color-surface-feature-card: var(--color-slate-600);
+  --color-surface-feature-card-dark: var(--color-slate-800);
   --color-text-primary: var(--color-neutral-900);
   --color-text-secondary: var(--color-neutral-500);
   --color-text-tertiary: var(--color-neutral-400);
   --color-text-inverse: var(--color-neutral-0);
+  --color-text-on-feature: var(--color-neutral-0);
+  --color-text-on-feature-muted: var(--color-neutral-0-60);
   --color-text-brand: var(--color-brand-primary);
   --color-text-accent: var(--color-accent-primary);
   --color-border-default: var(--color-neutral-100);
   --color-border-strong: var(--color-neutral-0);
   --color-border-focus: var(--color-brand-primary);
   --color-border-accent: var(--color-accent-soft);
-  --color-border-feature: var(--color-glass-white72);
+  --color-border-feature: var(--color-glass-white42);
 
   /* Component */
   --component-button-primary-background: var(--color-brand-primary);
@@ -256,7 +262,7 @@
   --color-background-card-strong: var(--color-purple-900);
   --color-surface-primary: var(--color-neutral-800);
   --color-surface-secondary: var(--color-neutral-700);
-  --color-surface-feature-panel: var(--color-slate-800);
+  --color-surface-feature-panel: linear-gradient(0deg, var(--color-slate-700) 0%, var(--color-slate-900) 90%);
   --color-surface-feature-card: var(--color-slate-700);
   --color-surface-feature-card-dark: var(--color-slate-900);
   --color-text-primary: var(--color-neutral-50);
@@ -266,5 +272,4 @@
   --color-border-default: var(--color-neutral-700);
   --color-border-strong: var(--color-purple-750);
   --color-border-accent: var(--color-accent-primary);
-  --color-border-feature: var(--color-glass-white16);
 }

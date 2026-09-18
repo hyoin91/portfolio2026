@@ -32,6 +32,8 @@ export const lightTheme = {
     },
     "slate": {
       "100": "var(--color-slate-100)",
+      "200": "var(--color-slate-200)",
+      "400": "var(--color-slate-400)",
       "600": "var(--color-slate-600)",
       "700": "var(--color-slate-700)",
       "800": "var(--color-slate-800)",
@@ -53,6 +55,7 @@ export const lightTheme = {
     },
     "glass": {
       "white16": "var(--color-glass-white16)",
+      "white42": "var(--color-glass-white42)",
       "white72": "var(--color-glass-white72)"
     },
     "brand": {
@@ -78,6 +81,7 @@ export const lightTheme = {
       "primary": "var(--color-surface-primary)",
       "secondary": "var(--color-surface-secondary)",
       "featurePanel": "var(--color-surface-feature-panel)",
+      "featureGlow": "var(--color-surface-feature-glow)",
       "featureCard": "var(--color-surface-feature-card)",
       "featureCardDark": "var(--color-surface-feature-card-dark)"
     },
@@ -86,6 +90,8 @@ export const lightTheme = {
       "secondary": "var(--color-text-secondary)",
       "tertiary": "var(--color-text-tertiary)",
       "inverse": "var(--color-text-inverse)",
+      "onFeature": "var(--color-text-on-feature)",
+      "onFeatureMuted": "var(--color-text-on-feature-muted)",
       "brand": "var(--color-text-brand)",
       "accent": "var(--color-text-accent)"
     },
@@ -371,6 +377,8 @@ export const darkTheme = {
     },
     "slate": {
       "100": "var(--color-slate-100)",
+      "200": "var(--color-slate-200)",
+      "400": "var(--color-slate-400)",
       "600": "var(--color-slate-600)",
       "700": "var(--color-slate-700)",
       "800": "var(--color-slate-800)",
@@ -392,6 +400,7 @@ export const darkTheme = {
     },
     "glass": {
       "white16": "var(--color-glass-white16)",
+      "white42": "var(--color-glass-white42)",
       "white72": "var(--color-glass-white72)"
     },
     "brand": {
@@ -417,6 +426,7 @@ export const darkTheme = {
       "primary": "var(--color-surface-primary)",
       "secondary": "var(--color-surface-secondary)",
       "featurePanel": "var(--color-surface-feature-panel)",
+      "featureGlow": "var(--color-surface-feature-glow)",
       "featureCard": "var(--color-surface-feature-card)",
       "featureCardDark": "var(--color-surface-feature-card-dark)"
     },
@@ -425,6 +435,8 @@ export const darkTheme = {
       "secondary": "var(--color-text-secondary)",
       "tertiary": "var(--color-text-tertiary)",
       "inverse": "var(--color-text-inverse)",
+      "onFeature": "var(--color-text-on-feature)",
+      "onFeatureMuted": "var(--color-text-on-feature-muted)",
       "brand": "var(--color-text-brand)",
       "accent": "var(--color-text-accent)"
     },

@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Text from "../ui/Text";
 import Badge from "../ui/Badge";
 import Section from "../common/Section";
+import KeyFeatures from "./KeyFeatures";
 import { Column, Row, Wrap } from "../layout/Layout";
 import { getProject, ROLE_LABELS } from "../../data/projects";
 
@@ -18,7 +19,8 @@ function FeaturesProject (){
             title="Features Project"
             moreTo={`/projects/${project.id}`}
         >
-            <Row $gap={4}>
+            <FeaturesDescWrap>
+  <Row $gap={4}>
                 <Thumb src={ddoksobi} alt="굿소비 앱 화면"/> 
           
                 <Column $gap={2}>
@@ -46,6 +48,11 @@ function FeaturesProject (){
                     </Text>
                 </Column>
             </Row>
+            </FeaturesDescWrap>
+          
+            <KeyFeatures
+                features={project.features}
+            />
         </Section>
     );
 }
@@ -57,4 +64,7 @@ const RowBottom =  styled(Row)`
    
 `;
 const Thumb = styled.img`
+`;
+const FeaturesDescWrap = styled.div`
+    
 `;

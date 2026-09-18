@@ -2,13 +2,14 @@ import styled from "styled-components";
 import Text from "../../ui/Text";
 import { Row } from "../../layout/Layout";
 import Section from "../../common/Section";
-import { getRoleStats } from "../../../data/projects";
+import { getRoleStats, ROLE_LABELS } from "../../../data/projects";
+
 import StateBar from "./StateBar";
 
 const roleMeta =[
-  { role: "frontend",   label: "Frontend",   color: "brand-primary" },
-  { role: "design",     label: "Design",     color: "accent-primary" },
-  { role: "publishing", label: "Publishing", color: "brand-secondary" },
+  { role: "frontend", color: "brand-primary" },
+  { role: "design",  color: "accent-primary" },
+  { role: "publishing",color: "brand-secondary" },
 ];
 
 function  ProjectState(){
@@ -16,6 +17,7 @@ function  ProjectState(){
     const counts =  getRoleStats(); //roles 갯수
     const roles =  roleMeta.map((meta)=>({
         ...meta,
+        label: ROLE_LABELS[meta.role],
         count: counts[meta.role] ?? 0, 
     }));
     const total = roles.reduce((sum,role)=>

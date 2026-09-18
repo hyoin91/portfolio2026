@@ -30,6 +30,8 @@
       },
       "slate": {
         "100": { "value": "#DCE4E7", "type": "color" },
+         "200": { "value": "#cfe3eb", "type": "color" },
+        "400": { "value": "#82A5B2", "type": "color" },
         "600": { "value": "#3F5559", "type": "color" },
         "700": { "value": "#2E4650", "type": "color" },
         "800": { "value": "#1F3C47", "type": "color" },
@@ -51,6 +53,7 @@
       },
       "glass": {
         "white16": { "value": "rgba(255, 255, 255, 0.16)", "type": "color" },
+        "white42": { "value": "rgba(255, 255, 255, 0.42)", "type": "color" },
         "white72": { "value": "rgba(255, 255, 255, 0.72)", "type": "color" }
       }
     },
@@ -390,15 +393,18 @@
   "surface": {
     "primary": { "value": "{color.neutral.0}", "type": "color" },
     "secondary": { "value": "{color.neutral.50}", "type": "color" },
-    "featurePanel": { "value": "{color.accent.deep}", "type": "color" },
-    "featureCard": { "value": "{color.slate.100}", "type": "color" },
-    "featureCardDark": { "value": "{color.slate.600}", "type": "color" }
+    "featurePanel": { "value": "linear-gradient(0deg, {color.teal.500} 0%, {color.teal.700} 90%)", "type": "color" },
+    "featureGlow": { "value": "{color.slate.200}", "type": "color" },
+    "featureCard": { "value": "{color.slate.600}", "type": "color" },
+    "featureCardDark": { "value": "{color.slate.800}", "type": "color" }
   },
   "text": {
     "primary": { "value": "{color.neutral.900}", "type": "color" },
     "secondary": { "value": "{color.neutral.500}", "type": "color" },
     "tertiary": { "value": "{color.neutral.400}", "type": "color" },
     "inverse": { "value": "{color.neutral.0}", "type": "color" },
+    "onFeature": { "value": "{color.neutral.0}", "type": "color" },
+    "onFeatureMuted": { "value": "{color.neutral.0-60}", "type": "color" },
     "brand": { "value": "{color.brand.primary}", "type": "color" },
     "accent": { "value": "{color.accent.primary}", "type": "color" }
   },
@@ -407,7 +413,7 @@
     "strong": { "value": "{color.neutral.0}", "type": "color" },
     "focus": { "value": "{color.brand.primary}", "type": "color" },
     "accent": { "value": "{color.accent.soft}", "type": "color" },
-    "feature": { "value": "{color.glass.white72}", "type": "color" }
+    "feature": { "value": "{color.glass.white42}", "type": "color" }
   }
 }
   },
@@ -435,7 +441,8 @@
     "surface": {
       "primary": { "value": "{color.neutral.800}", "type": "color" },
       "secondary": { "value": "{color.neutral.700}", "type": "color" },
-      "featurePanel": { "value": "{color.slate.800}", "type": "color" },
+      "featurePanel": { "value": "linear-gradient(0deg, {color.slate.700} 0%, {color.slate.900} 90%)", "type": "color" },
+      "featureGlow": { "value": "{color.slate.200}", "type": "color" },
       "featureCard": { "value": "{color.slate.700}", "type": "color" },
       "featureCardDark": { "value": "{color.slate.900}", "type": "color" }
     },
@@ -444,6 +451,8 @@
       "secondary": { "value": "{color.neutral.300}", "type": "color" },
       "tertiary": { "value": "{color.neutral.400}", "type": "color" },
       "inverse": { "value": "{color.neutral.900}", "type": "color" },
+      "onFeature": { "value": "{color.neutral.0}", "type": "color" },
+      "onFeatureMuted": { "value": "{color.neutral.0-60}", "type": "color" },
       "brand": { "value": "{color.brand.primary}", "type": "color" },
       "accent": { "value": "{color.accent.deep}", "type": "color" }
     },
@@ -452,7 +461,7 @@
       "strong": { "value": "{color.purple.750}", "type": "color" },
       "focus": { "value": "{color.brand.primary}", "type": "color" },
       "accent": { "value": "{color.accent.primary}", "type": "color" },
-      "feature": { "value": "{color.glass.white16}", "type": "color" }
+      "feature": { "value": "{color.glass.white42}", "type": "color" }
     }
     }
   },

@@ -1,24 +1,57 @@
-import styled from "styled-components";
+import styled,{css} from "styled-components";
 import {Link} from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import Text from "../ui/Text";
 import Icon from "../ui/Icon";
 import { Column, RowBetween } from "../layout/Layout";
 
+const VARIANTS = {
+    default:{
+        titleSize: "heading",
+    titleColor: "text-primary",
+    topOffset: 0 ,
+    gap: 6,
+    card: css`
+      background: var(--component-card-default-background);
+      border-radius: var(--component-card-default-radius);
+      padding: var(--component-card-default-padding);
+      box-shadow: var(--component-card-default-shadow);
+      overflow: hidden;
+    `, 
+    },
+    feature:{
+       titleSize: "title",
+        titleColor: "text-on-feature",
+        topOffset: 0,
+        gap: 4,
+        card: css`
+        background: var(--component-feature-card-panel-background);
+        border-radius: var(--component-feature-card-radius);
+        padding: var(--component-feature-card-padding);
+        padding-bottom: calc(var(--component-feature-card-padding) * 3 );
+        position: relative;
+        overflow: hidden;
+        isolation: isolate;
+        `,
+    }
+}
 function Section({
     title,
     action,
     moreTo,
     children,
-    topOffset= 8,
-    gap = 6
+    topOffset,
+    gap,
+    variant = "default"
 }){
+    const style = VARIANTS[variant];
     return(
-        <Card $gap={gap}>
+        <Card $gap={gap ?? style.gap} $variant={variant}>
             <RowBetween>
                 <TitleText 
-                    size="heading" 
-                    $topoffset={topOffset}
+                    size={style.titleSize}
+                    color={style.titleColor} 
+                    $topoffset={topOffset ?? style.topOffset}
                     >
                     {title}
                 </TitleText>
@@ -39,10 +72,8 @@ export default Section;
 //---------------------styled----------------//
 
 const Card= styled(Column)`
-    background:var(--component-card-default-background) ;
-    border-radius: var(--component-card-default-radius);
-    padding: var(--component-card-default-padding);
-    box-shadow: var(--component-card-default-shadow);
+    ${({$variant})=> VARIANTS[$variant].card}
+    position: relative;
 `;
 const TitleText = styled(Text)`
     padding-top:${({$topoffset})=>`
