@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Outlet } from "react-router-dom"; //액자틀처럼
 import Header from "./Header";
+import { media } from "../../styles/media";
 
 
 function MainLayout(){
@@ -24,10 +25,13 @@ const Wrapper = styled.div`
   width: 100%;
   max-width: 1440px;
     min-height: 100vh;
-    margin:var(--spacing-4) 0;
-   padding: 0 var(--spacing-6);
+    margin: 0 auto;
+   padding: var(--spacing-4) var(--spacing-6);
    display: flex;
    flex-direction: column;
+   ${media.maxLg}{
+     width: 97%;
+   }
 `;
 
 const Content = styled.main`

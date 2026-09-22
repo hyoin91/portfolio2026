@@ -6,16 +6,14 @@ import RoleBar from "./RoleBar";
 
     const roles = [
         {label: "react" , percent:28, color:"brand-primary"},
-        {label: "UI Design" , percent:36, color: "brand-secondary"},
+        {label: "Design" , percent:36, color: "brand-secondary"},
         {label: "Publishing" , percent:36, color: "brand-primary-active"},
     ]
 function RoleBalance(){
 
     return(
         <Wrapper $gap={1}>
-            <Text size="title" >
-                Role Balance 
-            </Text>
+
              <RoleBar roles={roles} />
         </Wrapper>
     );
@@ -27,7 +25,7 @@ export default RoleBalance;
 //---------------------styled--1--------------//
 
  const Wrapper = styled(Column)`
-  width:390px;
+  width:330px;
 `;
 
 

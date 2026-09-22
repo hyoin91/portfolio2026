@@ -24,7 +24,7 @@ function SkillsCard(){
         <Section 
             title="Skills & Tools"
             topOffset= {0}
-             gap = {2}
+            gap = {2}
         >
             <Column $gap={3}>
                 {skillGroup.map((group)=>(

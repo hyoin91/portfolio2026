@@ -6,7 +6,7 @@ import { RowBetween } from "../../layout/Layout";
 const stats = [
   { icon: Clock, value: "3+", label: "Years" },
   { icon: Folder, value: "21", label: "Projects" },
-  { icon: Accessibility, value: "5", label: "WCAG Certified" },
+  { icon: Accessibility, value: "5", label: "WCAG" },
 ];
 
 function Stats() {
@@ -28,5 +28,5 @@ export default Stats;
 
 //---------------------styled----------------//
 const Wrapper = styled(RowBetween)`
-  width: 330px;
+  width: 280px;
 `;

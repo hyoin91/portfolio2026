@@ -2,6 +2,7 @@ import Icon from "../../components/ui/Icon";
 import {Search,UserRound} from "lucide-react";
 import styled from "styled-components"
 import {Column, RowBetween} from"../../components/layout/Layout";
+import { media } from "../../styles/media";
 
 import Welcome from "../../components/dashboard/Welcome";
 import RoleBalance from "../../components/dashboard/RoleBalanceCard/RoleBalance";
@@ -22,20 +23,20 @@ function Dashboard() {
       <Stats/>
     </RowBetween>
      <DashboardGrid>
-        <Column $gap={4}>
+        <MainCol>
           <ProfileCard />
           <SkillsCard />
-        </Column>
+        </MainCol>
 
-        <Column $gap={4}>
+        <MainCol>
            <RecentlyProject />
            <LatestUpdates />
-        </Column>
+        </MainCol>
 
-        <Column $gap={4}>
+        <SideCol $gap={4}>
           <ProjectState/>
-           <FeaturesProject />
-        </Column>
+           <FeaturesProject grow />
+        </SideCol>
       </DashboardGrid>
    </Page>
   );
@@ -51,19 +52,58 @@ export default Dashboard;
    min-height: 100%;
   
  `;
-
+/* 1·2열: 박스는 사라지고 카드들이 DashboardGrid의 칸이 된다(전 구간).
+   → 같은 행끼리 높이를 공유한다 (Profile↔Recently, Skills↔Latest)
+   박스가 없으니 gap도 없다 — 카드 간격은 DashboardGrid의 gap이 만든다 */
+const MainCol = styled.div`
+  display: contents;
+   /* 모바일에선 첫 묶음(Profile·Skills)만 박스를 되찾아 2칸으로 나눈다.
+     두 번째 묶음은 계속 display:contents라 카드가 한 줄씩 차지 */
+      ${media.maxSm} {
+         &:first-child {
+           display: grid;
+           grid-template-columns: 1fr 1fr;
+           gap: var(--spacing-4);
+      }
+      }
+`;
 
 const DashboardGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr 1.5fr 1.4fr;
+  /* 1·2열의 카드들이 공유하는 행.
+     ⚠ 한 열의 카드 개수를 바꾸면 이 숫자도 같이 바꿀 것
+        (넘치면 행이 아니라 '열'이 새로 생겨서 레이아웃이 깨진다) */
+  grid-template-rows: repeat(2, auto);
+  grid-auto-flow: column;          /* 세로로 먼저 채움 */
   gap: var(--spacing-4);
   flex:1;
 
-  @media (max-width: 1024px) {
-    grid-template-columns: 1fr 1fr;   /* 태블릿: 2열 */
+  ${media.maxLg} {
+    grid-template-columns: 3.5fr 6.5fr;   /* 태블릿: 2열(3:7) */
+    grid-template-rows:  repeat(3, auto);/* 카드 2행 + Side 1행 */
+    grid-auto-flow: column;
   }
 
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;       /* 모바일: 1열 */
+  ${media.maxSm} {
+    grid-template-columns: 1fr ;     /* 모바일: 1열 */
+    grid-template-rows: auto;
+     grid-auto-flow: row; /*1열에선 위에서 아래로 */
+    
+  }
+`;
+
+
+/* 3열: 행에 끼지 않고 2행 전체를 혼자 차지 (기준 높이 담당) */
+const SideCol = styled(Column)`
+  grid-column: 3;
+  grid-row: 1 / -1;
+
+  ${media.maxLg} {
+    grid-column: 1 / -1;   /* 2열 아래에 가로로 꽉 차게 */
+    grid-row: 3;/* 카드 2행 아래 */
+  }
+  ${media.maxSm}{
+      grid-row: auto;        /* 1열에선 그냥 맨 아래로 */
   }
 `;

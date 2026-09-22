@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import typography from "../../styles/typography";
+import { media } from "../../styles/media";
 
 const StyledText = styled.span`
   font-size: ${({ $size }) => typography[$size].fontSize};
@@ -11,7 +12,14 @@ const StyledText = styled.span`
     `letter-spacing: ${typography[$size].letterSpacing};`}
   color: ${({ $color }) => `var(--color-${$color})`};
 
-  @media (max-width: 768px) {
+ ${({ $size, $mdScale }) => {
+    if ($mdScale == null) return "";
+    return `${media.maxMd} {
+      font-size: calc(${typography[$size].fontSize} * ${$mdScale});
+    }`;
+  }}
+  
+  ${media.maxSm} {
     ${({ $size, $weight }) => {
       const r = typography[$size].responsive;
       if (!r) return "";
@@ -28,11 +36,19 @@ function Text({
   size = "body",
   color = "text-primary",
   weight,  
+  mdScale,
   children,
   ...rest
 }) {
   return (
-    <StyledText as={as} $size={size} $color={color} $weight={weight} {...rest}>
+    <StyledText 
+      as={as} 
+      $size={size} 
+      $color={color} 
+      $weight={weight}
+      $mdScale={mdScale} 
+      {...rest}
+      >
       {children}
     </StyledText>
   );

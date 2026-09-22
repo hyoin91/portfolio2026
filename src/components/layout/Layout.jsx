@@ -15,6 +15,7 @@ export const Row = styled.div`
 export const Column = styled.div`
   ${flexBase}
   flex-direction: column;
+  justify-content: space-evenly;
 `;
 
 /* 좌우 정렬 */

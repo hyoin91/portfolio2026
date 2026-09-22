@@ -1,17 +1,19 @@
 import styled from "styled-components";
 import Text from "../ui/Text";
+import{ media } from "../../styles/media"
 import { Column, RowBetween } from "../layout/Layout";
 import profileSrc from "../../assets/images/profile.svg";
 
 function ProfileCard(){
 
     return(
+      
         <Card>
             <Photo src={profileSrc} alt="Hyoin Lee"/>
             <Scrim/>
             <Bottom>
                 <Column>
-                    <Text as="h3" size="heading" color="text-inverse">
+                    <Text as="h3" size="heading" color="text-inverse" mdScale={0.75}>
                       Hyoin Lee
                     </Text>
                     <Text size="body" color="text-inverse">
@@ -55,4 +57,8 @@ const Bottom = styled(RowBetween)`
   bottom: 0;
   align-items: flex-end;   /* RowBetween 기본 center를 아래정렬로 덮어씀 */
   padding: var(--component-card-default-padding);
+  ${media.maxMd}{
+      flex-direction: column;
+      align-items: flex-start;
+  }
 `;

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Text from "../ui/Text";
 import Badge from "../ui/Badge";
+import {media} from "../../styles/media"
 import Section from "../common/Section";
 import KeyFeatures from "./KeyFeatures";
 import { Column, Row, Wrap } from "../layout/Layout";
@@ -8,23 +9,25 @@ import { getProject, ROLE_LABELS } from "../../data/projects";
 
 import ddoksobi from"../../assets/images/project/ddoksobi.svg";
 
-function FeaturesProject (){
+function FeaturesProject ({grow}){
 
     const project = getProject("goodsobi"); //id
 
     if(!project) return null
-    
+
     return(
         <Section
             title="Features Project"
             moreTo={`/projects/${project.id}`}
+            grow={grow}
         >
-            <FeaturesDescWrap>
+            <FeaturesWrap>
+                <FeaturesDescWrap>
   <Row $gap={4}>
                 <Thumb src={ddoksobi} alt="굿소비 앱 화면"/> 
           
                 <Column $gap={2}>
-                    <RowBottom $gap={2}>
+                    <RowBottom>
                         <Text size="title" weight = "semibold">
                             {project.name}
                         </Text>
@@ -53,6 +56,8 @@ function FeaturesProject (){
             <KeyFeatures
                 features={project.features}
             />
+            </FeaturesWrap>
+            
         </Section>
     );
 }
@@ -60,8 +65,8 @@ function FeaturesProject (){
 export default FeaturesProject;
 //---------------------styled----------------//
 const RowBottom =  styled(Row)`
-   align-items :baseline;
-   
+   display: flex;
+   flex-direction: column;
 `;
 const Thumb = styled.img`
  flex: 0 0 auto;
@@ -70,4 +75,16 @@ const Thumb = styled.img`
 `;
 const FeaturesDescWrap = styled.div`
     
+`;
+const FeaturesWrap = styled.div`
+    ${media.maxLg}{
+        display: flex;
+         gap: var(--spacing-4);
+         > * {
+            flex:1;
+             margin-top: 0; 
+         }
+        > *:first-child { flex: 3; }
+        > *:last-child { flex: 7; }
+    }
 `;

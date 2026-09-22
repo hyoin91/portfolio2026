@@ -42,11 +42,12 @@ function Section({
     children,
     topOffset,
     gap,
+    grow = false,
     variant = "default"
 }){
     const style = VARIANTS[variant];
     return(
-        <Card $gap={gap ?? style.gap} $variant={variant}>
+        <Card $gap={gap ?? style.gap} $variant={variant} $grow={grow}>
             <RowBetween>
                 <TitleText 
                     size={style.titleSize}
@@ -74,6 +75,7 @@ export default Section;
 const Card= styled(Column)`
     ${({$variant})=> VARIANTS[$variant].card}
     position: relative;
+    ${({$grow})=>$grow && `flex-grow:1;`}
 `;
 const TitleText = styled(Text)`
     padding-top:${({$topoffset})=>`

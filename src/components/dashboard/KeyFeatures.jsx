@@ -4,6 +4,7 @@ import Icon from "../ui/Icon";
 
 import Section from "../common/Section";
 import { Column, Row } from "../layout/Layout";
+import { media } from "../../styles/media";
 
 import { Bell, Bookmark, FolderTree, Search, Sparkles } from "lucide-react";
 
@@ -52,7 +53,7 @@ function  KeyFeatures ({features=[]}){
                             {feature.title}
                         </Text>
                         <Text
-                            size="caption"
+                            
                             color="text-on-feature-muted"
                         >
                             {feature.desc}
@@ -79,7 +80,7 @@ const Grid = styled.div`
     grid-template-columns: 1fr 1fr;
     gap: var(--spacing-3);
 
-    @media (max-width: 768px) {
+    ${media.maxSm} {
         grid-template-columns: 1fr;
     }
 

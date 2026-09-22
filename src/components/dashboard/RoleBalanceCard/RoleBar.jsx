@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Text from "../../ui/Text";
 import {Row, Column} from "../../layout/Layout"
+import {media} from "../../../styles/media"
 
 function RoleBar({roles}){
 
@@ -9,7 +10,7 @@ function RoleBar({roles}){
             <Row>
                 {roles.map((role)=>(
                    <Bar
-                        $gap={1}
+                        $gap={2}
                         key={role.label}
                         $percent={role.percent} 
                     >
@@ -21,7 +22,7 @@ function RoleBar({roles}){
                         >
                                 <Text 
                                     as="span" 
-                                    size="caption" 
+                                    
                                     color="text-inverse"
                                 >
                                     {role.percent}        
@@ -45,7 +46,10 @@ const Bar = styled(Column)`
 
 const Segment = styled(Row)`
   background: var(--color-${(props) => props.$color});
-  height:3.7rem;
+  height:2.8rem;
   padding: var(--component-card-default-padding);
   border-radius:100px;
+  ${media.maxMd}{
+    height:2.7rem;
+  }
 `;

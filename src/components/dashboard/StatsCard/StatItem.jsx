@@ -6,11 +6,11 @@ import { Column, Row } from "../../layout/Layout";
 function StatItem({ icon, value, label }) {
   return (
     <Item>
-      <TopRow>
+      <TopRow $gap={1}>
         <Icon component={icon} size="sm" color="brand-primary" />
         <Text size="display">{value}</Text>
       </TopRow>
-      <Text size="caption" color="text-secondary">
+      <Text  color="text-secondary">
         {label}
       </Text>
     </Item>
@@ -28,5 +28,5 @@ const Item = styled(Column)`
 
 const TopRow = styled(Row)`
   align-items: baseline;
-  gap: var(--spacing-1);
+  
 `;

@@ -33,7 +33,7 @@ function  ProjectState(){
             <TotalRow $gap={2}>
                 <Text 
                     as="span"
-                    size="caption"
+                    
                     color="text-secondary"
                     >
                     Total

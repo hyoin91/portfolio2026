@@ -14,7 +14,7 @@ function StateBar({roles,total}){
                         : 0
                     }
                 >
-                  <Text as="span" size="caption" color="text-secondary">
+                  <Text as="span"  color="text-secondary">
                     {role.label}
                   </Text>
                   <Segment $color={role.color}>
