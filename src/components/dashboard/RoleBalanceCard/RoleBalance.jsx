@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Text from "../../ui/Text"
 import { Column } from "../../layout/Layout";
-
+import{media}from "../../../styles/media"
 import RoleBar from "./RoleBar";
 
     const roles = [
@@ -26,6 +26,9 @@ export default RoleBalance;
 
  const Wrapper = styled(Column)`
   width:330px;
+  ${media.maxSm}{
+    width:280px;
+  }
 `;
 
 

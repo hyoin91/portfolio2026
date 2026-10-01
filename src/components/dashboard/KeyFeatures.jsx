@@ -39,7 +39,7 @@ function  KeyFeatures ({features=[]}){
                         <IconWrap>
                             <Icon
                                 component={FEATURE_ICONS[feature.icon] ?? Sparkles}
-                                 size="md"
+                                 size="sm"
                                 color="surface-feature-glow"
                                  strokeWidth={1.25}
 />
@@ -47,13 +47,12 @@ function  KeyFeatures ({features=[]}){
                          <Column $gap={0}>
                          <Text
                             size="text"
-                            weight="semibold"
                             color="text-on-feature"
                         >
                             {feature.title}
                         </Text>
                         <Text
-                            
+                            size="note"
                             color="text-on-feature-muted"
                         >
                             {feature.desc}
@@ -71,9 +70,9 @@ function  KeyFeatures ({features=[]}){
 export default KeyFeatures;
 //---------------------styled----------------//
 const KeyWrap =  styled.div`
-    margin-top: auto;
+    margin-top: 0.5rem;
     margin-bottom: calc(var(--component-card-default-padding) * -2);
-   
+    
 `;
 const Grid = styled.div`
     display: grid;

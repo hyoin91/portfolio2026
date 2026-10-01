@@ -133,7 +133,7 @@
   --color-background-morebtn: var(--color-neutral-0);
   --color-surface-primary: var(--color-neutral-0);
   --color-surface-secondary: var(--color-neutral-50);
-  --color-surface-feature-panel: linear-gradient(0deg, var(--color-teal-500) 0%, var(--color-teal-700) 90%);
+  --color-surface-feature-panel: linear-gradient(200deg, var(--color-teal-300) 0%, var(--color-teal-500) 45%, var(--color-teal-700) 100%);
   --color-surface-feature-glow: var(--color-slate-200);
   --color-surface-feature-card: var(--color-slate-600);
   --color-surface-feature-card-dark: var(--color-slate-800);

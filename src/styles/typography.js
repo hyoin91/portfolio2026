@@ -4,6 +4,10 @@ const typography = {
     fontSize: "var(--font-sizes-12)",
     fontWeight: "var(--font-weights-regular)",
   },
+  note: {
+    fontSize: "var(--font-sizes-14)",
+    fontWeight: "var(--font-weights-regular)",
+  },
   text: {
     fontSize: "var(--font-sizes-16)",
     fontWeight: "var(--font-weights-regular)",

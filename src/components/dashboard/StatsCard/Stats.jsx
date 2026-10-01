@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { Clock, Folder, Accessibility } from "lucide-react";
 import StatItem from "./StatItem";
 import { RowBetween } from "../../layout/Layout";
+import {media}from "../../../styles/media"
 
 const stats = [
   { icon: Clock, value: "3+", label: "Years" },
@@ -29,4 +30,7 @@ export default Stats;
 //---------------------styled----------------//
 const Wrapper = styled(RowBetween)`
   width: 280px;
+  ${media.maxSm}{
+    width:220px;
+  }
 `;

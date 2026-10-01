@@ -3,6 +3,7 @@ import{Routes,Route} from "react-router-dom"
 import Dashboard from "../pages/Dashboard"
 import Projects from "../pages/Projects"
 import ProjectDetail from "../pages/ProjectDetail"
+import TroubleshootingDetail from "../pages/TroubleshootingDetail"
 import DesignSystem from "../pages/DesignSystem"
 import About from "../pages/About"
 import Contact from "../pages/Contact"
@@ -15,6 +16,7 @@ function Router(){
                 <Route path="/" element={<Dashboard/>}/>
                 <Route path="/projects" element={<Projects/>}/>
                 <Route path="/projects/:id" element={<ProjectDetail/>}/>
+                <Route path="/projects/:id/troubleshooting/:tsId" element={<TroubleshootingDetail/>}/>
                  <Route path="/about" element={<About/>}/>
                 <Route path="/contact" element={<Contact/>}/>
                 {/* <Route path="/design-system" element={<DesignSystem/>}/> */}

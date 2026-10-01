@@ -393,7 +393,7 @@
   "surface": {
     "primary": { "value": "{color.neutral.0}", "type": "color" },
     "secondary": { "value": "{color.neutral.50}", "type": "color" },
-    "featurePanel": { "value": "linear-gradient(0deg, {color.teal.500} 0%, {color.teal.700} 90%)", "type": "color" },
+    "featurePanel": { "value": "linear-gradient(200deg, {color.teal.300} 0%, {color.teal.500} 45%, {color.teal.700} 100%)", "type": "color" },
     "featureGlow": { "value": "{color.slate.200}", "type": "color" },
     "featureCard": { "value": "{color.slate.600}", "type": "color" },
     "featureCardDark": { "value": "{color.slate.800}", "type": "color" }

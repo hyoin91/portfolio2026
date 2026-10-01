@@ -23,7 +23,12 @@ function Dashboard() {
       <Stats/>
     </RowBetween>
      <DashboardGrid>
-        <MainCol>
+      <SideCol $gap={4}>
+          <FeaturesProject grow />
+          <ProjectState/>
+        </SideCol>
+
+        <MainCol $pair>
           <ProfileCard />
           <SkillsCard />
         </MainCol>
@@ -33,10 +38,6 @@ function Dashboard() {
            <LatestUpdates />
         </MainCol>
 
-        <SideCol $gap={4}>
-          <ProjectState/>
-           <FeaturesProject grow />
-        </SideCol>
       </DashboardGrid>
    </Page>
   );
@@ -57,21 +58,25 @@ export default Dashboard;
    박스가 없으니 gap도 없다 — 카드 간격은 DashboardGrid의 gap이 만든다 */
 const MainCol = styled.div`
   display: contents;
-   /* 모바일에선 첫 묶음(Profile·Skills)만 박스를 되찾아 2칸으로 나눈다.
-     두 번째 묶음은 계속 display:contents라 카드가 한 줄씩 차지 */
-      ${media.maxSm} {
-         &:first-child {
-           display: grid;
-           grid-template-columns: 1fr 1fr;
-           gap: var(--spacing-4);
-      }
-      }
+
+  /* $pair를 받은 묶음만 모바일에서 박스를 되찾아 2칸으로 나눈다.
+     나머지는 계속 display:contents라 카드가 한 줄씩 차지.
+     ⚠ :first-child는 DOM 순서를 바꾸면 조용히 깨지므로 prop으로 표시한다 */
+  ${media.maxSm} {
+    ${({ $pair }) =>
+      $pair &&
+      `display: grid;
+       grid-template-columns: 1fr 1fr;
+       gap: var(--spacing-4);
+       align-items: start;`}
+  }
 `;
 
 const DashboardGrid = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1.5fr 1.4fr;
-  /* 1·2열의 카드들이 공유하는 행.
+  /* 1열 = Side(Features) · 2열 = Profile·Skills · 3열 = Recently·Latest */
+  grid-template-columns: 1.4fr 1fr 1.5fr;
+  /* 2·3열의 카드들이 공유하는 행.
      ⚠ 한 열의 카드 개수를 바꾸면 이 숫자도 같이 바꿀 것
         (넘치면 행이 아니라 '열'이 새로 생겨서 레이아웃이 깨진다) */
   grid-template-rows: repeat(2, auto);
@@ -94,9 +99,9 @@ const DashboardGrid = styled.div`
 `;
 
 
-/* 3열: 행에 끼지 않고 2행 전체를 혼자 차지 (기준 높이 담당) */
+/* 1열: 행에 끼지 않고 2행 전체를 혼자 차지 (기준 높이 담당) */
 const SideCol = styled(Column)`
-  grid-column: 3;
+  grid-column: 1;
   grid-row: 1 / -1;
 
   ${media.maxLg} {

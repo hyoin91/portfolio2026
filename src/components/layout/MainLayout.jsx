@@ -23,7 +23,7 @@ export default MainLayout;
 
 const Wrapper = styled.div`
   width: 100%;
-  max-width: 1440px;
+
     min-height: 100vh;
     margin: 0 auto;
    padding: var(--spacing-4) var(--spacing-6);
