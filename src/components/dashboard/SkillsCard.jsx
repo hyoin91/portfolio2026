@@ -57,6 +57,6 @@ export default SkillsCard;
 //---------------------styled----------------//
 
 const SkillTitle = styled(Text)`
-    margin-bottom:1px;
+    margin-bottom:3px;
 `;
 

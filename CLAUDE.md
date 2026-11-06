@@ -239,8 +239,13 @@
     (`frontend` → `Front-end` 등). `ProjectState`와 `FeaturesProject`가
     공유. **`Badge`의 `variant`에는 코드값(`role`)을, 화면 텍스트에는
     `ROLE_LABELS[role]`을 넘긴다** (variant는 토큰 이름에 그대로 붙기 때문).
-- **콘텐츠 언어 규칙 (2026-07-30 확정)**: UI 라벨(카드 제목·메뉴·버튼)은 영어,
-  **내 프로젝트 콘텐츠는 한국어**. 그리고 **같은 기능은 앱 어디서나 토씨 하나까지
+- **콘텐츠 언어 규칙 (2026-07-30 확정, 2026-11-06 수정)**: **메인(대시보드)은
+  영어, 상세 페이지는 한글.** 메뉴와 대시보드 카드 제목은 영어(컨셉·훑어보는 곳),
+  `ProjectDetail`·`TroubleshootingDetail`의 섹션 제목은 한글(읽으러 들어온 곳 —
+  "문제 상황/원인 파악/해결 방법/본인 기여/검증/배운 점"처럼 면접에서 쓰는 말과
+  맞춘다). **내 프로젝트 콘텐츠는 한국어.** 영어 라벨은 문법을 꼭 확인할 것
+  (`Contack`·`Welcome in`·`Features Project`·`Recently Project`를 고친 적 있음).
+  그리고 **같은 기능은 앱 어디서나 토씨 하나까지
   같은 이름**으로 부른다 (`updates`의 `title`을 `features`의 `title`과 글자
   단위로 일치시킨 이유 — 원래 `Folder Drag & Drop` vs `드래그 앤 드롭 폴더`로
   갈려 있었음).

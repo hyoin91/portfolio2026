@@ -33,9 +33,17 @@ const VARIANTS = {
         overflow: hidden;
         isolation: isolate;
         `,
+    },
+    plain:{
+        titleSize: "title",
+        titleColor: "text-primary",
+        topOffset: 0,
+        gap: 4,
+        card: css``,
     }
 }
 function Section({
+    id,
     title,
     action,
     moreTo,
@@ -47,7 +55,7 @@ function Section({
 }){
     const style = VARIANTS[variant];
     return(
-        <Card $gap={gap ?? style.gap} $variant={variant} $grow={grow}>
+        <Card id={id} $gap={gap ?? style.gap} $variant={variant} $grow={grow}>
             <RowBetween>
                 <TitleText 
                     size={style.titleSize}

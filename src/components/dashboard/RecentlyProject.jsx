@@ -8,19 +8,21 @@ function RecentlyProject(){
 
     return(
         <Section 
-            title="Recently Project" 
+            title="Recent Projects" 
             moreTo="/projects"
         >
             <Column $gap={2}>
-                {items.map((project) => (
+                {items.map((project, index) => (
                 <ListRow
                     key={project.id}
                     to={`/projects/${project.id}`}
+                    logo={project.logo}
                     name={project.name}
                     desc={project.summary}
                     badge={project.roles[0]}
                     badgeVariant={project.roles[0]}
                     meta={project.year}
+                    highlight={index === 0}
                 />
                 ))}
             </Column>

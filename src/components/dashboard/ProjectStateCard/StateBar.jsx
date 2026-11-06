@@ -4,7 +4,7 @@ import { Row, Column } from "../../layout/Layout";
 
 function StateBar({roles,total}){
     return(
-        <Row $gap={1}>
+        <Row $gap={0}>
             {roles.map((role)=>(
                 <Bar
                     key={role.role}

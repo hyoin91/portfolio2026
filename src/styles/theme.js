@@ -4,10 +4,13 @@
 export const lightTheme = {
   "color": {
     "purple": {
+      "10": "var(--color-purple-10)",
       "25": "var(--color-purple-25)",
       "50": "var(--color-purple-50)",
+      "75": "var(--color-purple-75)",
       "100": "var(--color-purple-100)",
       "200": "var(--color-purple-200)",
+      "250": "var(--color-purple-250)",
       "300": "var(--color-purple-300)",
       "500": "var(--color-purple-500)",
       "600": "var(--color-purple-600)",
@@ -18,8 +21,17 @@ export const lightTheme = {
       "950": "var(--color-purple-950)"
     },
     "blue": {
+      "50": "var(--color-blue-50)",
+      "100": "var(--color-blue-100)",
+      "150": "var(--color-blue-150)",
+      "200": "var(--color-blue-200)",
+      "300": "var(--color-blue-300)",
       "400": "var(--color-blue-400)",
-      "500": "var(--color-blue-500)"
+      "500": "var(--color-blue-500)",
+      "600": "var(--color-blue-600)",
+      "700": "var(--color-blue-700)",
+      "800": "var(--color-blue-800)",
+      "900": "var(--color-blue-900)"
     },
     "teal": {
       "50": "var(--color-teal-50)",
@@ -49,9 +61,41 @@ export const lightTheme = {
       "700": "var(--color-neutral-700)",
       "800": "var(--color-neutral-800)",
       "900": "var(--color-neutral-900)",
+      "950": "var(--color-neutral-950)",
       "0-80": "var(--color-neutral-0-80)",
       "0-60": "var(--color-neutral-0-60)",
       "0-40": "var(--color-neutral-0-40)"
+    },
+    "sky": {
+      "100": "var(--color-sky-100)"
+    },
+    "gray": {
+      "50": "var(--color-gray-50)",
+      "200": "var(--color-gray-200)",
+      "500": "var(--color-gray-500)",
+      "600": "var(--color-gray-600)",
+      "700": "var(--color-gray-700)"
+    },
+    "orchid": {
+      "50": "var(--color-orchid-50)",
+      "100": "var(--color-orchid-100)",
+      "300": "var(--color-orchid-300)",
+      "500": "var(--color-orchid-500)",
+      "700": "var(--color-orchid-700)",
+      "800": "var(--color-orchid-800)",
+      "900": "var(--color-orchid-900)"
+    },
+    "green": {
+      "50": "var(--color-green-50)",
+      "300": "var(--color-green-300)",
+      "500": "var(--color-green-500)",
+      "900": "var(--color-green-900)"
+    },
+    "red": {
+      "50": "var(--color-red-50)",
+      "300": "var(--color-red-300)",
+      "500": "var(--color-red-500)",
+      "900": "var(--color-red-900)"
     },
     "glass": {
       "white16": "var(--color-glass-white16)",
@@ -64,13 +108,37 @@ export const lightTheme = {
       "primaryActive": "var(--color-brand-primary-active)",
       "secondary": "var(--color-brand-secondary)",
       "soft": "var(--color-brand-soft)",
-      "subtle": "var(--color-brand-subtle)"
+      "subtle": "var(--color-brand-subtle)",
+      "onSubtle": "var(--color-brand-on-subtle)"
+    },
+    "sub": {
+      "primary": "var(--color-sub-primary)",
+      "secondary": "var(--color-sub-secondary)"
+    },
+    "role": {
+      "frontend": "var(--color-role-frontend)",
+      "frontendBg": "var(--color-role-frontend-bg)",
+      "frontendText": "var(--color-role-frontend-text)",
+      "design": "var(--color-role-design)",
+      "designBg": "var(--color-role-design-bg)",
+      "designText": "var(--color-role-design-text)",
+      "publishing": "var(--color-role-publishing)",
+      "publishingBg": "var(--color-role-publishing-bg)",
+      "publishingText": "var(--color-role-publishing-text)"
     },
     "accent": {
       "primary": "var(--color-accent-primary)",
       "deep": "var(--color-accent-deep)",
       "soft": "var(--color-accent-soft)",
       "subtle": "var(--color-accent-subtle)"
+    },
+    "success": {
+      "primary": "var(--color-success-primary)",
+      "subtle": "var(--color-success-subtle)"
+    },
+    "danger": {
+      "primary": "var(--color-danger-primary)",
+      "subtle": "var(--color-danger-subtle)"
     },
     "background": {
       "page": "var(--color-background-page)",
@@ -80,6 +148,7 @@ export const lightTheme = {
     "surface": {
       "primary": "var(--color-surface-primary)",
       "secondary": "var(--color-surface-secondary)",
+      "placeholder": "var(--color-surface-placeholder)",
       "featurePanel": "var(--color-surface-feature-panel)",
       "featureGlow": "var(--color-surface-feature-glow)",
       "featureCard": "var(--color-surface-feature-card)",
@@ -243,6 +312,8 @@ export const lightTheme = {
         "background": "var(--component-link-listlink-background)",
         "backgroundHover": "var(--component-link-listlink-background-hover)",
         "backgroundActive": "var(--component-link-listlink-background-active)",
+        "backgroundHighlight": "var(--component-link-listlink-background-highlight)",
+        "borderHover": "var(--component-link-listlink-border-hover)",
         "text": "var(--component-link-listlink-text)",
         "radius": "var(--component-link-listlink-radius)",
         "paddingY": "var(--component-link-listlink-padding-y)"
@@ -283,6 +354,14 @@ export const lightTheme = {
       "default": {
         "background": "var(--component-badge-default-background)",
         "text": "var(--component-badge-default-text)"
+      },
+      "feature": {
+        "background": "var(--component-badge-feature-background)",
+        "text": "var(--component-badge-feature-text)"
+      },
+      "fix": {
+        "background": "var(--component-badge-fix-background)",
+        "text": "var(--component-badge-fix-text)"
       },
       "radius": "var(--component-badge-radius)",
       "paddingX": "var(--component-badge-padding-x)",
@@ -349,10 +428,13 @@ export const lightTheme = {
 export const darkTheme = {
   "color": {
     "purple": {
+      "10": "var(--color-purple-10)",
       "25": "var(--color-purple-25)",
       "50": "var(--color-purple-50)",
+      "75": "var(--color-purple-75)",
       "100": "var(--color-purple-100)",
       "200": "var(--color-purple-200)",
+      "250": "var(--color-purple-250)",
       "300": "var(--color-purple-300)",
       "500": "var(--color-purple-500)",
       "600": "var(--color-purple-600)",
@@ -363,8 +445,17 @@ export const darkTheme = {
       "950": "var(--color-purple-950)"
     },
     "blue": {
+      "50": "var(--color-blue-50)",
+      "100": "var(--color-blue-100)",
+      "150": "var(--color-blue-150)",
+      "200": "var(--color-blue-200)",
+      "300": "var(--color-blue-300)",
       "400": "var(--color-blue-400)",
-      "500": "var(--color-blue-500)"
+      "500": "var(--color-blue-500)",
+      "600": "var(--color-blue-600)",
+      "700": "var(--color-blue-700)",
+      "800": "var(--color-blue-800)",
+      "900": "var(--color-blue-900)"
     },
     "teal": {
       "50": "var(--color-teal-50)",
@@ -394,9 +485,41 @@ export const darkTheme = {
       "700": "var(--color-neutral-700)",
       "800": "var(--color-neutral-800)",
       "900": "var(--color-neutral-900)",
+      "950": "var(--color-neutral-950)",
       "0-80": "var(--color-neutral-0-80)",
       "0-60": "var(--color-neutral-0-60)",
       "0-40": "var(--color-neutral-0-40)"
+    },
+    "sky": {
+      "100": "var(--color-sky-100)"
+    },
+    "gray": {
+      "50": "var(--color-gray-50)",
+      "200": "var(--color-gray-200)",
+      "500": "var(--color-gray-500)",
+      "600": "var(--color-gray-600)",
+      "700": "var(--color-gray-700)"
+    },
+    "orchid": {
+      "50": "var(--color-orchid-50)",
+      "100": "var(--color-orchid-100)",
+      "300": "var(--color-orchid-300)",
+      "500": "var(--color-orchid-500)",
+      "700": "var(--color-orchid-700)",
+      "800": "var(--color-orchid-800)",
+      "900": "var(--color-orchid-900)"
+    },
+    "green": {
+      "50": "var(--color-green-50)",
+      "300": "var(--color-green-300)",
+      "500": "var(--color-green-500)",
+      "900": "var(--color-green-900)"
+    },
+    "red": {
+      "50": "var(--color-red-50)",
+      "300": "var(--color-red-300)",
+      "500": "var(--color-red-500)",
+      "900": "var(--color-red-900)"
     },
     "glass": {
       "white16": "var(--color-glass-white16)",
@@ -409,13 +532,37 @@ export const darkTheme = {
       "primaryActive": "var(--color-brand-primary-active)",
       "secondary": "var(--color-brand-secondary)",
       "soft": "var(--color-brand-soft)",
-      "subtle": "var(--color-brand-subtle)"
+      "subtle": "var(--color-brand-subtle)",
+      "onSubtle": "var(--color-brand-on-subtle)"
+    },
+    "sub": {
+      "primary": "var(--color-sub-primary)",
+      "secondary": "var(--color-sub-secondary)"
+    },
+    "role": {
+      "frontend": "var(--color-role-frontend)",
+      "frontendBg": "var(--color-role-frontend-bg)",
+      "frontendText": "var(--color-role-frontend-text)",
+      "design": "var(--color-role-design)",
+      "designBg": "var(--color-role-design-bg)",
+      "designText": "var(--color-role-design-text)",
+      "publishing": "var(--color-role-publishing)",
+      "publishingBg": "var(--color-role-publishing-bg)",
+      "publishingText": "var(--color-role-publishing-text)"
     },
     "accent": {
       "primary": "var(--color-accent-primary)",
       "deep": "var(--color-accent-deep)",
       "soft": "var(--color-accent-soft)",
       "subtle": "var(--color-accent-subtle)"
+    },
+    "success": {
+      "primary": "var(--color-success-primary)",
+      "subtle": "var(--color-success-subtle)"
+    },
+    "danger": {
+      "primary": "var(--color-danger-primary)",
+      "subtle": "var(--color-danger-subtle)"
     },
     "background": {
       "page": "var(--color-background-page)",
@@ -425,6 +572,7 @@ export const darkTheme = {
     "surface": {
       "primary": "var(--color-surface-primary)",
       "secondary": "var(--color-surface-secondary)",
+      "placeholder": "var(--color-surface-placeholder)",
       "featurePanel": "var(--color-surface-feature-panel)",
       "featureGlow": "var(--color-surface-feature-glow)",
       "featureCard": "var(--color-surface-feature-card)",
@@ -588,6 +736,8 @@ export const darkTheme = {
         "background": "var(--component-link-listlink-background)",
         "backgroundHover": "var(--component-link-listlink-background-hover)",
         "backgroundActive": "var(--component-link-listlink-background-active)",
+        "backgroundHighlight": "var(--component-link-listlink-background-highlight)",
+        "borderHover": "var(--component-link-listlink-border-hover)",
         "text": "var(--component-link-listlink-text)",
         "radius": "var(--component-link-listlink-radius)",
         "paddingY": "var(--component-link-listlink-padding-y)"
@@ -628,6 +778,14 @@ export const darkTheme = {
       "default": {
         "background": "var(--component-badge-default-background)",
         "text": "var(--component-badge-default-text)"
+      },
+      "feature": {
+        "background": "var(--component-badge-feature-background)",
+        "text": "var(--component-badge-feature-text)"
+      },
+      "fix": {
+        "background": "var(--component-badge-fix-background)",
+        "text": "var(--component-badge-fix-text)"
       },
       "radius": "var(--component-badge-radius)",
       "paddingX": "var(--component-badge-padding-x)",

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Outlet } from "react-router-dom"; //액자틀처럼
 import Header from "./Header";
+import ScrollToTop from "./ScrollToTop";
 import { media } from "../../styles/media";
 
 
@@ -8,6 +9,7 @@ function MainLayout(){
 
     return(
         <Wrapper>
+            <ScrollToTop/>
             <Header/>
             <Content>
                 <Outlet/>

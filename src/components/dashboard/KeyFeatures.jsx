@@ -4,15 +4,14 @@ import Icon from "../ui/Icon";
 
 import Section from "../common/Section";
 import { Column, Row } from "../layout/Layout";
-import { media } from "../../styles/media";
 
-import { Bell, Bookmark, FolderTree, Search, Sparkles } from "lucide-react";
+import { Bell, ChartLine, FolderTree, Share2, Sparkles } from "lucide-react";
 
 const FEATURE_ICONS={
     alert:Bell,
-    save:  Bookmark,
     organize: FolderTree,
-    search: Search,
+    chart: ChartLine,
+    share: Share2,
 };
 
 function  KeyFeatures ({features=[]}){
@@ -23,14 +22,9 @@ function  KeyFeatures ({features=[]}){
         <KeyWrap>
  <Section
             title= "Key Features"
-            variant="feature"
+            variant="plain"
         >
-            <Glow $size={400} $top={-74} $left={-39} />
-            <Glow $size={400} $top={30} $left={47} />
-            <Glow $size={400} $top={-90} $left={26} />
-            <Glow $size={400} $top={25} $left={-10} />
-
-            <Grid>
+            <List>
                 {features.map((feature)=>(
                     <Item
                         key={feature.title}
@@ -40,28 +34,22 @@ function  KeyFeatures ({features=[]}){
                             <Icon
                                 component={FEATURE_ICONS[feature.icon] ?? Sparkles}
                                  size="sm"
-                                color="surface-feature-glow"
-                                 strokeWidth={1.25}
+                                
+                                 strokeWidth={1.5}
 />
                         </IconWrap>
-                         <Column $gap={0}>
+                        
                          <Text
                             size="text"
-                            color="text-on-feature"
+                            color="text-primary"
                         >
                             {feature.title}
                         </Text>
-                        <Text
-                            size="note"
-                            color="text-on-feature-muted"
-                        >
-                            {feature.desc}
-                        </Text>
-                         </Column>
+                        
                         
                     </Item>
                 ))}
-            </Grid>
+            </List>
         </Section>
         </KeyWrap>
        
@@ -71,49 +59,24 @@ export default KeyFeatures;
 //---------------------styled----------------//
 const KeyWrap =  styled.div`
     margin-top: 0.5rem;
-    margin-bottom: calc(var(--component-card-default-padding) * -2);
-    
 `;
-const Grid = styled.div`
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--spacing-3);
-
-    ${media.maxSm} {
-        grid-template-columns: 1fr;
-    }
-
-`;
-
-const Glow = styled.span`
-    position: absolute;
-    z-index: -1;
-    top: ${({ $top = 0 }) => `${$top}%`};
-    left: ${({ $left = 0 }) => `${$left}%`};
-    width: ${({ $size = 320 }) => `${$size}px`};
-    height: ${({ $size = 320 }) => `${$size}px`};
-    border-radius: 50%;
-    background: radial-gradient(
-        circle,
-        var(--color-surface-feature-glow) 0%,
-        transparent 67%
-    );
-    opacity: 0.5;
-    pointer-events: none;
+const List = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2);
 `;
 
 const Item = styled(Row)`
     align-items: center;
-    border: 0.5px solid var(--component-feature-card-border);
     border-radius: var(--component-feature-card-radius);
-    padding: var(--spacing-3);
-
+    padding: var(--spacing-1) var(--spacing-2);
+    background: var(--color-background-page);   /* 흰 카드 위의 옅은 회색 줄 */
 `;
 const IconWrap = styled.div`
     flex: 0 0 auto;
     display: flex;
-    padding: var(--spacing-2);
     border-radius: 50%;
-    background: var(--color-surface-feature-card);
-
+    margin-right:var(--spacing-1);
+    padding:var(--spacing-2);
+    background: var(--color-surface-primary);
 `;

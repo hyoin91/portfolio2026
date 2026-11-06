@@ -7,7 +7,6 @@ import KeyFeatures from "./KeyFeatures";
 import { Column, Row, Wrap } from "../layout/Layout";
 import { getProject, ROLE_LABELS } from "../../data/projects";
 
-import ddoksobi from"../../assets/images/project/ddoksobi.svg";
 
 function FeaturesProject ({grow}){
 
@@ -17,14 +16,15 @@ function FeaturesProject ({grow}){
 
     return(
         <Section
-            title="Features Project"
+            title="Featured Project"
             moreTo={`/projects/${project.id}`}
             grow={grow}
         >
             <FeaturesWrap>
                 <FeaturesDescWrap>
   <Row $gap={4}>
-                <Thumb src={ddoksobi} alt="굿소비 앱 화면"/> 
+                {/* 대표 이미지 = 앱 아이콘. 옆 제목에 이름이 있어 alt 는 비운다 */}
+                {project.logo && <Thumb src={project.logo} alt="" />}
           
                 <Column $gap={2}>
                     <RowBottom>
@@ -64,14 +64,18 @@ function FeaturesProject ({grow}){
 
 export default FeaturesProject;
 //---------------------styled----------------//
+/* 이름 옆에 한 줄 설명. 좁으면 아래로 내려간다 */
 const RowBottom =  styled(Row)`
-   display: flex;
-   flex-direction: column;
+   align-items: baseline;
+   flex-wrap: wrap;
+   column-gap: var(--spacing-2);
 `;
 const Thumb = styled.img`
- flex: 0 0 auto;
-    width: 65px;
-    height: auto;
+    flex: 0 0 auto;
+    width: 90px;
+    height: 90px;
+    border-radius: var(--border-radius-sm);   /* 56px 의 약 22% — 앱 아이콘 모서리 비율 */
+    object-fit: contain;
 `;
 const FeaturesDescWrap = styled.div`
     

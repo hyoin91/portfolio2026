@@ -5,9 +5,10 @@ import{media}from "../../../styles/media"
 import RoleBar from "./RoleBar";
 
     const roles = [
-        {label: "react" , percent:28, color:"brand-primary"},
-        {label: "Design" , percent:36, color: "brand-secondary"},
-        {label: "Publishing" , percent:36, color: "brand-primary-active"},
+        /* 역할 색은 토큰 role.* 한 곳에서 — Project State·역할 뱃지와 같은 색 */
+        {label: "react" , percent:28, color:"role-frontend"},
+        {label: "Design" , percent:36, color: "role-design"},
+        {label: "Publishing" , percent:36, color: "role-publishing"},
     ]
 function RoleBalance(){
 

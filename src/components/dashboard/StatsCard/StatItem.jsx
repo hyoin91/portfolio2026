@@ -22,7 +22,7 @@ export default StatItem;
 //---------------------styled----------------//
 const Item = styled(Column)`
   &:not(:last-child) {
-    border-right: 1px dashed var(--color-border-default);
+   // border-right: 1px dashed var(--color-border-default);
   }
 `;
 

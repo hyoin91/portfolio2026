@@ -42,12 +42,12 @@ const Pre = styled.pre`
 `;
 
 const TINTS = {
-  add: "var(--color-accent-subtle)",
-  del: "var(--color-brand-subtle)",
+  add: "var(--color-success-subtle)",  /* 추가한 줄은 초록 */
+  del: "var(--color-danger-subtle)",   /* 지운 줄은 빨강 — 거의 모든 diff 도구의 약속 */
 };
 const MARKS = {
-  add: "var(--color-accent-primary)",
-  del: "var(--color-brand-primary)",
+  add: "var(--color-success-primary)",
+  del: "var(--color-danger-primary)",
 };
 
 const Line = styled.span`

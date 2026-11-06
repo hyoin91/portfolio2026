@@ -47,6 +47,7 @@ const Bar = styled(Column)`
 const Segment = styled(Row)`
   background: var(--color-${(props) => props.$color});
   height:2.8rem;
+  align-items: center;
   padding: var(--component-card-default-padding);
   border-radius:100px;
   ${media.maxMd}{

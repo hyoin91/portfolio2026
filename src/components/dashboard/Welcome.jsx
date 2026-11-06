@@ -7,7 +7,7 @@ function Welcome(){
 
     return(
         <Text as="h1" size="display">
-            Welcome in, HYO Dashboard
+            Welcome to HYO's Dashboard
         </Text>
     );
 

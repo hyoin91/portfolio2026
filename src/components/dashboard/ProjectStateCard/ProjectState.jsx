@@ -7,9 +7,10 @@ import { getRoleStats, ROLE_LABELS } from "../../../data/projects";
 import StateBar from "./StateBar";
 
 const roleMeta =[
-  { role: "frontend", color: "brand-primary" },
-  { role: "design",  color: "accent-primary" },
-  { role: "publishing",color: "brand-secondary" },
+  /* 역할 색은 토큰 role.* 한 곳에서 — RoleBalance·역할 뱃지와 같은 색 */
+  { role: "frontend", color: "role-frontend" },
+  { role: "design",  color: "role-design" },
+  { role: "publishing",color: "role-publishing" },
 ];
 
 function  ProjectState(){

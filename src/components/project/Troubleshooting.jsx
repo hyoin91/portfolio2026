@@ -16,7 +16,7 @@ function Troubleshooting({ projectId }) {
   if (items.length === 0) return null;
 
   return (
-    <Section title="Troubleshooting">
+    <Section title="트러블슈팅">
       <Column $gap={2}>
         {items.map((item) => (
           <ItemLink

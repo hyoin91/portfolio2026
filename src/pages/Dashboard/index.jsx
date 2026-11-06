@@ -28,14 +28,14 @@ function Dashboard() {
           <ProjectState/>
         </SideCol>
 
-        <MainCol $pair>
-          <ProfileCard />
-          <SkillsCard />
-        </MainCol>
-
         <MainCol>
            <RecentlyProject />
            <LatestUpdates />
+        </MainCol>
+
+        <MainCol $pair>
+          <ProfileCard />
+          <SkillsCard />
         </MainCol>
 
       </DashboardGrid>
@@ -74,8 +74,8 @@ const MainCol = styled.div`
 
 const DashboardGrid = styled.div`
   display: grid;
-  /* 1열 = Side(Features) · 2열 = Profile·Skills · 3열 = Recently·Latest */
-  grid-template-columns: 1.4fr 1fr 1.5fr;
+  /* 1열 = Side(Features) · 2열 = Recently·Latest · 3열 = Profile·Skills */
+  grid-template-columns: 1.4fr 1.5fr 1fr;
   /* 2·3열의 카드들이 공유하는 행.
      ⚠ 한 열의 카드 개수를 바꾸면 이 숫자도 같이 바꿀 것
         (넘치면 행이 아니라 '열'이 새로 생겨서 레이아웃이 깨진다) */
@@ -85,7 +85,7 @@ const DashboardGrid = styled.div`
   flex:1;
 
   ${media.maxLg} {
-    grid-template-columns: 3.5fr 6.5fr;   /* 태블릿: 2열(3:7) */
+    grid-template-columns: 6.5fr 3.5fr;   /* 태블릿: 1열 Recently·Latest(7) / 2열 Profile·Skills(3) */
     grid-template-rows:  repeat(3, auto);/* 카드 2행 + Side 1행 */
     grid-auto-flow: column;
   }

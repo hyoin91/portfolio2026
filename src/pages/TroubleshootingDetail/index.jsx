@@ -27,12 +27,12 @@ function TroubleshootingDetail() {
   }
 
   return (
-    <Column $gap={6}>
+    <Page $gap={6}>
       <Column $gap={3}>
         <BackLink to={`/projects/${id}`}>
           <Icon component={ArrowLeft} size="sm" color="text-secondary" />
           <Text size="note" color="text-secondary">
-            {project?.name ?? "프로젝트"} Troubleshooting
+            {project?.name ?? "프로젝트"} 트러블슈팅
           </Text>
         </BackLink>
 
@@ -46,12 +46,12 @@ function TroubleshootingDetail() {
         </Row>
       </Column>
 
-      <Section title="Problem">
+      <Section title="문제 상황">
         <Text size="text">{item.problem}</Text>
       </Section>
 
       {item.investigation?.length > 0 && (
-        <Section title="Investigation">
+        <Section title="원인 파악">
           {item.investigationIntro && (
             <Text size="text">{item.investigationIntro}</Text>
           )}
@@ -66,7 +66,7 @@ function TroubleshootingDetail() {
       )}
 
       {item.cause?.length > 0 && (
-        <Section title="Cause">
+        <Section title="원인">
           {item.causeIntro && <Text size="text">{item.causeIntro}</Text>}
           <Column $gap={2}>
             {item.cause.map((line) => (
@@ -80,7 +80,7 @@ function TroubleshootingDetail() {
       )}
 
       {item.solution?.length > 0 && (
-        <Section title="Solution">
+        <Section title="해결 방법">
           <Column $gap={5}>
             {item.solution.map((block, index) => (
               <Column key={block.text ?? index} $gap={2}>
@@ -131,7 +131,13 @@ function TroubleshootingDetail() {
         </Section>
       )}
 
-      <Section title="Result">
+      {item.contribution?.length > 0 && (
+        <Section title="문제 해결 과정에서의 역할">
+          <WhoList rows={item.contribution} />
+        </Section>
+      )}
+
+      <Section title="결과">
         <Text size="text">{item.result}</Text>
         {item.tech?.length > 0 && (
           <Wrap $gap={2}>
@@ -142,18 +148,47 @@ function TroubleshootingDetail() {
         )}
       </Section>
 
-      {item.value && (
-        <Section title="What this shows" variant="feature">
-          <Text size="text" color="text-on-feature">{item.value}</Text>
+      {item.verification?.length > 0 && (
+        <Section title="검증">
+          <WhoList rows={item.verification} />
         </Section>
       )}
-    </Column>
+
+      {item.lessons?.length > 0 && (
+        <Section title="배운 점" variant="feature">
+          <Column $gap={2}>
+            {item.lessons.map((line) => (
+              <Text key={line} size="text" color="text-on-feature">{line}</Text>
+            ))}
+          </Column>
+        </Section>
+      )}
+    </Page>
   );
 }
 
 export default TroubleshootingDetail;
 
+/* 「누가 무엇을 했나」 목록 — Contribution과 Verification이 같은 모양이라 함께 쓴다 */
+function WhoList({ rows }) {
+  return (
+    <Column $gap={2}>
+      {rows.map((row) => (
+        <WhoRow key={row.who + row.text} $gap={3}>
+          <Who size="caption" weight="semibold" color="text-brand">{row.who}</Who>
+          <Text size="text" color="text-secondary">{row.text}</Text>
+        </WhoRow>
+      ))}
+    </Column>
+  );
+}
+
 //---------------------styled----------------//
+
+/* 페이지 맨 아래 여백 — 마지막 카드가 화면 끝에 붙어 보이지 않게 */
+const Page = styled(Column)`
+  padding-bottom: var(--spacing-16);
+`;
 
 const BackLink = styled(Link)`
   display: inline-flex;
@@ -184,7 +219,7 @@ const Step = styled.li`
     place-items: center;
     border-radius: 50%;
     background: var(--color-brand-subtle);
-    color: var(--color-brand-primary);
+    color: var(--color-text-brand);   /* 12px 작은 숫자라 진한 파랑(대비 확보) */
     font-size: var(--font-sizes-12);
     font-weight: var(--font-weights-semibold);
   }
@@ -233,4 +268,13 @@ const Td = styled.td`
 const Note = styled(Text)`
   border-left: 2px solid var(--color-border-default);
   padding-left: var(--spacing-3);
+`;
+
+const WhoRow = styled(Row)`
+  align-items: baseline;
+`;
+
+/* 고정폭이라 모든 줄의 설명 시작 위치가 맞는다 (ListRow의 Name과 같은 방식) */
+const Who = styled(Text)`
+  flex: 0 0 44px;
 `;
